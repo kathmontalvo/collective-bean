@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { connect, styled } from "frontity";
-import Link from "./link";
-import List from "./list";
-import FeaturedMedia from "./featured-media";
+import Link from "../link";
+import List from "../list";
+import FeaturedMedia from "../featured-media";
+import BeanPlace from "./bean-place";
 
 /**
  * The Post component that Mars uses to render any kind of "post type", like
@@ -36,6 +37,13 @@ const Post = ({ state, actions, libraries }) => {
   // Get the html2react component.
   const Html2React = libraries.html2react.Component;
 
+  const postType = data.type; // 'coffee-bean' o 'cocoa-bean'
+  const bean = state.source[postType][data.id]
+
+  console.log(postType, bean)
+
+  // const cocoaBean = state.source["cocoa-bean"][data.id]
+
   /**
    * Once the post has loaded in the DOM, prefetch both the
    * home posts and the list component so if the user visits
@@ -51,31 +59,23 @@ const Post = ({ state, actions, libraries }) => {
     <Container>
       <div>
         <Title dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
-
-        {/* Hide author and date on pages */}
-        {!data.isPage && (
-          <div>
-            {author && (
-              <StyledLink link={author.link}>
-                <Author>
-                  By <b>{author.name}</b>
-                </Author>
-              </StyledLink>
-            )}
-            <DateWrapper>
-              {" "}
-              on <b>{date.toDateString()}</b>
-            </DateWrapper>
-          </div>
-        )}
+        {
+          (postType === 'coffee-bean' || postType === 'cocoa-bean') && 
+          <>
+            {/* <p>id: {post.id} </p>
+            {JSON.stringify(bean.acf)}
+            {JSON.stringify(bean.acf.image)} */}
+            <BeanPlace></BeanPlace>
+          </>
+        }
       </div>
 
       {/* Look at the settings to see if we should include the featured image */}
-      {state.theme.featured.showOnPost && (
+      {/* {state.theme.featured.showOnPost && (
         <FeaturedMedia id={post.featured_media} />
-      )}
+      )} */}
 
-      {data.isAttachment ? (
+      {/* {data.isAttachment ? (
         // If the post is an attachment, just render the description property,
         // which already contains the thumbnail.
         <div dangerouslySetInnerHTML={{ __html: post.description.rendered }} />
@@ -86,7 +86,7 @@ const Post = ({ state, actions, libraries }) => {
         <Content>
           <Html2React html={post.content.rendered} />
         </Content>
-      )}
+      )} */}
     </Container>
   ) : null;
 };

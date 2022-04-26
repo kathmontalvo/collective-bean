@@ -2,6 +2,7 @@ import Theme from "./components";
 import image from "@frontity/html2react/processors/image";
 import iframe from "@frontity/html2react/processors/iframe";
 import link from "@frontity/html2react/processors/link";
+import menuHandler from "./components/handlers/menu-handler"
 
 const marsTheme = {
   name: "@frontity/mars-theme",
@@ -20,6 +21,7 @@ const marsTheme = {
     theme: {
       autoPrefetch: "in-view",
       menu: [],
+      menuUrl: "all-pages",
       isMobileMenuOpen: false,
       featured: {
         showOnList: false,
@@ -40,6 +42,9 @@ const marsTheme = {
       closeMobileMenu: ({ state }) => {
         state.theme.isMobileMenuOpen = false;
       },
+      beforeSSR: async ({state, actions}) => {
+        await actions.source.fetch(`/menu/${state.theme.menuUrl}/`)
+      }
     },
   },
   libraries: {
@@ -51,6 +56,9 @@ const marsTheme = {
        */
       processors: [image, iframe, link],
     },
+    source: {
+      handlers: [menuHandler]
+    }
   },
 };
 

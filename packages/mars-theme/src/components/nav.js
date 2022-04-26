@@ -6,36 +6,85 @@ import Link from "./link";
  *
  * It renders the navigation links
  */
-const Nav = ({ state }) => (
-  <NavContainer>
-    {state.theme.menu.map(([name, link]) => {
-      // Check if the link matched the current page url
-      const data = state.source.get(state.router.link);
-      const isCurrentPage = data.route === link;
+const Nav = ({ state }) => {
+  const items = state.source.get(`/menu/${state.theme.menuUrl}/`).items;
 
-      return (
-        <NavItem key={name}>
-          {/* If link url is the current page, add `aria-current` for a11y */}
-          <Link link={link} aria-current={isCurrentPage ? "page" : undefined}>
-            {name}
-          </Link>
-        </NavItem>
-      );
-    })}
-  </NavContainer>
-);
+  const getOffset = (el) => {
+    const rect = el.getBoundingClientRect();
+    return {
+      left: rect.left + window.scrollX,
+      top: rect.top + window.scrollY
+    };
+  }
+
+  const showChildren = (e, id) => {
+    const parentEl = document.getElementById(`navItemWithChild-${id}`);   
+    const el = document.getElementById(`childMenu-${id}`);
+
+    el.style.display = "block"
+    el.style.left = getOffset(parentEl).left + "px";
+  }
+
+  const hideChildren = (id) => {
+    const el = document.getElementById(`childMenu-${id}`)
+    el.style.display = "none"
+  }
+
+  return (
+    <NavContainer>
+      {items.map((item) => {
+        // Check if the link matched the current page url
+
+        const data = state.source.get(state.router.link);
+        const isCurrentPage = data.route === item.url;
+
+        if (!item.child_items) {
+          return (
+            <NavItem key={`navItem-${item.ID}`}>
+              {/* If link url is the current page, add `aria-current` for a11y */}
+              <Link link={item.url} aria-current={isCurrentPage ? "page" : undefined}>
+                {item.title}
+              </Link>
+            </NavItem>
+          );
+        } else {
+          const childItems = item.child_items;
+          return(
+            <NavItemWithChild key={`navItemWithChild-${item.ID}`} id={`navItemWithChild-${item.ID}`} onMouseLeave={() => hideChildren(item.ID)}>
+              <NavItem onMouseOver={(e) => showChildren(e, item.ID)}>
+                {/* If link url is the current page, add `aria-current` for a11y */}
+                <div className="childTitle" link={item.url} aria-current={isCurrentPage ? "page" : undefined}>
+                  {item.title}
+                </div>
+              </NavItem>
+              <ChildMenu id={`childMenu-${item.ID}`} onMouseLeave={() => hideChildren(item.ID)}>
+                {childItems.map((childItem) => {
+                  return (
+                    <NavItem key={childItem.ID}>
+                      <Link link={childItem.url}>
+                        {childItem.title}
+                      </Link>
+                  </NavItem>
+                  )
+                })}
+              </ChildMenu>
+            </NavItemWithChild>
+          )
+        }
+
+      })}
+    </NavContainer>
+  )
+}
 
 export default connect(Nav);
 
 const NavContainer = styled.nav`
-  list-style: none;
   display: flex;
-  width: 848px;
-  max-width: 100%;
   box-sizing: border-box;
-  padding: 0 24px;
   margin: 0;
-  overflow-x: auto;
+  font-family: 'Abel', sans-serif;
+  text-transform: uppercase;
 
   @media screen and (max-width: 560px) {
     display: none;
@@ -43,14 +92,15 @@ const NavContainer = styled.nav`
 `;
 
 const NavItem = styled.div`
-  padding: 0;
+  padding: 6px 0;
   margin: 0 16px;
   color: #fff;
   font-size: 0.9em;
   box-sizing: border-box;
-  flex-shrink: 0;
+  text-align: center;
+  width: 110px; 
 
-  & > a {
+  & > a, .childTitle {
     display: inline-block;
     line-height: 2em;
     border-bottom: 2px solid;
@@ -59,19 +109,35 @@ const NavItem = styled.div`
     &[aria-current="page"] {
       border-bottom-color: #fff;
     }
+    &:hover {
+      background: #B63EB6;
+    }
   }
-
-  &:first-of-type {
-    margin-left: 0;
+  .childTitle {
+    cursor: default;
   }
+`;
 
-  &:last-of-type {
-    margin-right: 0;
+const NavItemWithChild = styled.div`
+  width: 140px; 
+`;
 
-    &:after {
-      content: "";
-      display: inline-block;
-      width: 24px;
+const ChildMenu = styled.ul`
+  left: 0;
+  background-color: #162216;
+  z-index: 1;
+  display: none;
+  margin: 0;
+  padding: 12px;
+  position: absolute;
+  width: 130px;
+  ${NavItem} {
+    margin: 0;
+    width: auto;
+
+    a {
+      width: 100%;
+      padding: 2px;
     }
   }
 `;

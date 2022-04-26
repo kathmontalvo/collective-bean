@@ -2,18 +2,18 @@ import { connect, styled } from "frontity";
 import Link from "./link";
 import Nav from "./nav";
 import MobileMenu from "./menu";
+import cbLogoImg from "../images/cb_isotipo_white.png"
 
 const Header = ({ state }) => {
   return (
     <>
       <Container>
         <StyledLink link="/">
-          <Title>{state.frontity.title}</Title>
+          <Title src={cbLogoImg} alt="Isotipo Collective Bean" />
         </StyledLink>
-        <Description>{state.frontity.description}</Description>
         <MobileMenu />
+        <Nav />
       </Container>
-      <Nav />
     </>
   );
 };
@@ -22,24 +22,22 @@ const Header = ({ state }) => {
 export default connect(Header);
 
 const Container = styled.div`
-  width: 848px;
+  width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  padding: 24px;
+  padding: 24px 36px;
   color: #fff;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  flex-direction: row;
+  justify-content: space-between;
+  @media screen and (min-width: 768px) {
+    padding: 24px 120px;
+  }
 `;
 
-const Title = styled.h2`
+const Title = styled.img`
   margin: 0;
-  margin-bottom: 16px;
-`;
-
-const Description = styled.h4`
-  margin: 0;
-  color: rgba(255, 255, 255, 0.7);
+  width: 55px;
 `;
 
 const StyledLink = styled(Link)`
