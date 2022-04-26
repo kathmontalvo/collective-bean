@@ -94,7 +94,7 @@ const BeanChart = ({ title, acf, beanType }) => {
                                 <td>{TITLE_6}</td>
                             </tr>
                             <tr>
-                                <td className="main">Families involved</td>
+                                <td className="main">Families <br/> involved</td>
                                 <td>{TITLE_7}</td>
                             </tr>
                             <tr>

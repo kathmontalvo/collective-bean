@@ -78,7 +78,7 @@ const BeanPlace = ( { state, actions } ) => {
             <BeanChart title={title} acf={acf} beanType={beanType}/>
             <WrapperRanges>
                 <TitleBold> Our Ranges </TitleBold>
-                <Row>
+                <Row className="content">
                     <CardHover className={`comunales ${beanType}`}>
                         <Row>
                             <Column>

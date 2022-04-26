@@ -211,7 +211,7 @@ export const WrapperWelcome = styled.section`
         animation: 1s ${fadeAnimation} 0.2s backwards;
     }
     @media screen and (min-width: 768px) {
-        padding: 64px 120px 200px;
+        padding: 64px 80px 200px;
         & h1 {
             margin-top: 0.85em;
             font-size: 64px;
@@ -244,8 +244,11 @@ export const WrapperModel = styled.section`
         color: #B63EB6;
     }
     @media screen and (min-width: 768px) {
+        padding: 80px 80px;
+    }
+    @media screen and (min-width: 1200px) {
         padding: 120px;
-        padding-top: 140px
+        padding-top: 140px;
         padding-bottom: 200px;
     }
 
@@ -326,7 +329,7 @@ export const WrapperDiscover = styled.div`
         margin-top: 36px;
     }
     @media screen and (min-width: 768px) {
-        padding: 180px 120px;
+        padding: 120px 80px;
         flex-direction: row;
         border-radius: 80px 0 0 0;
         ${ShadowImage} {
@@ -338,6 +341,10 @@ export const WrapperDiscover = styled.div`
             margin-top: 0;
         }
     }
+    @media screen and (min-width: 1200px) {
+        padding: 180px 120px;
+    }
+    
 `
 
 export const WrapperBeans = styled.section`
@@ -348,8 +355,11 @@ export const WrapperBeans = styled.section`
     width: auto;
     background-size: cover;
     @media screen and (min-width: 768px) {
-        padding: 180px 120px;
+        padding: 120px 80px;
         flex-direction: row;
+    }
+    @media screen and (min-width: 1200px) {
+        padding: 180px 120px;
     }
 `
 
@@ -441,10 +451,10 @@ export const FooterSection = styled.footer`
         }
     }
     ${Column} {
-        width: 33%;
+        width: 50%;
         align-items: center;
         img.logo {
-            width: 200px;
+            width: 100%;
         }
         ${Row} { 
             a {
@@ -459,11 +469,13 @@ export const FooterSection = styled.footer`
         }
     }
     @media screen and (min-width: 768px) {
-        padding: 70px 150px;
+        padding: 70px 80px;
         flex-direction: row;
         ${Column} {
+            width: 33%;
             img.logo {
-                width: 300px;
+                width: 100%;
+                max-width: 300px;
             }
             ${Row} { 
                 img {
@@ -471,7 +483,9 @@ export const FooterSection = styled.footer`
                 }
             }
         }
-
+    }
+    @media screen and (min-width: 1200px) {
+        padding: 70px 150px;
     }
 
 `
@@ -479,7 +493,7 @@ export const FooterSection = styled.footer`
 // Beans
 
 export const WrapperBeansPage = styled(Wrapper)`
-    padding: 24px 36px;
+    padding: 24px 8px;
     background-color: #162216;
     width: auto;
     ${TitleBold} {
@@ -487,6 +501,9 @@ export const WrapperBeansPage = styled(Wrapper)`
         text-align: center;
     }
     @media screen and (min-width: 768px) {
+        padding: 36px 64px;
+    }
+    @media screen and (min-width: 1200px) {
         padding: 80px 120px;
     }
 `
@@ -507,6 +524,9 @@ export const ImgMap = styled.svg`
 
     @media screen and (min-width: 768px) {
         width: 80%;
+        height: 500px; 
+    }
+    @media screen and (min-width: 1200px) {
         height: 750px; 
     }
 `
@@ -515,27 +535,50 @@ export const ImgMap = styled.svg`
 
 export const WrapperBeanPlace = styled(Wrapper)`
     color: #FFFFFF;
-    padding: 24px 120px;
+    padding: 24px 36px;
     width: auto;
     ${Row} {
+        flex-direction: column;
         ${Column} {
-            width: 50%;
+            width: 100%;
             & ${TitleBold} {
-                font-size: 92px;    
-                line-height: 120px;
+                font-size: 48px;    
+                line-height: 64px;
                 margin-bottom: 0;
             }
             & ${TextBody} {
-                padding-right: 64px; 
+                color: #FFFFFF;
             }
         }
         .titleCol{
-            padding: 180px 0
+            padding: 24px 0;
         } 
     }
     ${BackgroundImage} {
         height: 125vh;
         position: fixed;
+    }
+    @media screen and (min-width: 768px) {
+        padding: 36px 80px;
+        ${Row} {
+            flex-direction: row;
+            ${Column} {
+                width: 50%;
+                & ${TitleBold} {
+                    font-size: 92px;   
+                    line-height: 120px;
+                }
+                & ${TextBody} {
+                    padding-right: 64px; 
+                }
+            }
+            .titleCol{
+                padding: 180px 0
+            } 
+        }
+    }
+    @media screen and (min-width: 1200px) {
+        padding: 24px 120px;
     }
 `
 
@@ -584,13 +627,13 @@ export const CardHover = styled(Row)`
 `
 
 export const BeanCardWrapper = styled(Wrapper)`
-    width: 90%;
+    width: 100%;
     border: 1px solid #FFFFFF;
     margin-bottom: 16px;
     img.loteImg {
         object-fit: cover;
         width: 100%;
-        height: 250px;
+        height: 200px;
     }
     .loteTxt {
         text-align: center;
@@ -623,20 +666,26 @@ export const BeanCardWrapper = styled(Wrapper)`
             display: flex;
         }
     }
+    @media screen and (min-width: 768px) {
+        width: 90%;
+        img.loteImg {
+            height: 250px;
+        }
+    }
 `
 
 export const WrapperBeanChart = styled(Wrapper)`
     background-color: #FFFFFF;
-    padding-top: 64px;
+    padding: 48px 0 18px;
+    margin-bottom: -2px;
     .title {
-        margin: 60px 200px;
+        margin: 36px;
         margin-bottom: 0;
         padding: 16px 0;
         text-align: center;
         border: 3px solid #162216;
         color: #162216;
         ${TitleNormal} {
-            font-size: 36px;
             display: block;
         }
         ${TitleBold} {
@@ -645,12 +694,13 @@ export const WrapperBeanChart = styled(Wrapper)`
         }
     }
     ${Row} {
-        margin: 60px 200px;
+        margin: 36px;
         margin-top: 0;
         background-color: #162216;
+        flex-direction: column;
+        padding: 24px;
         ${Column} {
-            padding: 48px;
-            width: 50%;
+            width: auto;
             table {
                 tr {
                     td {
@@ -658,6 +708,7 @@ export const WrapperBeanChart = styled(Wrapper)`
                         &.main {
                             color: #D1C065;
                             padding: 24px 0;
+                            width: 120px
                         }
                     }
                 }
@@ -671,48 +722,102 @@ export const WrapperBeanChart = styled(Wrapper)`
         }
 
     }
+    @media screen and (min-width: 768px) {
+        padding: 64px 0;
+
+        .title {
+            margin: 48px 80px;
+            margin-bottom: 0;
+        }
+        ${Row} {
+            margin: 48px 80px;
+            margin-top: 0;
+        }
+    }
+    @media screen and (min-width: 1200px) {
+        .title {
+            margin: 60px 200px;
+            margin-bottom: 0;
+        }
+        ${Row} {
+            margin: 60px 200px;
+            margin-top: 0;
+            flex-direction: row;
+            padding: 0;
+            ${Column} {
+                padding: 48px;
+                width: 50%;
+            }
+        }
+    }
 `
 
 export const WrapperRanges = styled(Wrapper)`
     background-color: #FFFFFF;
-    padding: 120px 200px;
+    padding: 48px 36px;
     width: auto;
     ${TitleBold} {
         text-align: center;
         color: #2C442C;
     }
-    ${CardHover} {
-        display: flex;
-        width: 50%;
-        margin-right: 8px;
-        margin-top: 48px;
+    .content {
         flex-direction: column;
-        height: auto;
-        padding: 0;
-        ${Row} {
-            padding: 32px 24px;
-            width: 90%;
-            ${Column} {
-                justify-content: center;
-                width: 50%;
-            }
-            img {
-                width: 40%;
-            }
-        }
-
-        .titleType {
+        ${CardHover} {
+            display: flex;
             width: 100%;
-            text-transform: uppercase;
-            text-align: center;
-            border: 2px solid #FFFFFF;
-            ${Subtitle} {
-                margin: auto;
+            margin-right: 8px;
+            margin-top: 48px;
+            flex-direction: column;
+            height: auto;
+            padding: 0;
+            ${Row} {
+                padding: 32px 24px;
+                width: 90%;
+                ${Column} {
+                    justify-content: center;
+                    width: 65%;
+                    ${TextBody} {
+                        color: #FFFFFF;
+                        margin: 8px;
+                    }
+                }
+                img {
+                    width: 35%;
+                }
+            }
+    
+            .titleType {
+                width: 100%;
+                text-transform: uppercase;
+                text-align: center;
+                border: 2px solid #FFFFFF;
+                ${Subtitle} {
+                    margin: auto;
+                }
             }
         }
     }
-    p {
-        margin: 0;
+
+    @media screen and (min-width: 768px) {
+        padding: 120px 80px;
+        .content {
+            flex-direction: row;
+            ${CardHover} {
+                width: 50%;
+                ${Column} {
+                    width: 60%;
+                    ${TextBody} {
+                        margin: 0;
+                    }
+                }
+                img {
+                    width: 40%;
+                }
+            }
+        }
+    }
+    @media screen and (min-width: 1200px) {
+        padding: 120px 200px;
     }
 `
 // Model
@@ -762,83 +867,81 @@ export const WrapperMessages = styled(Wrapper)`
         margin-top: 8px;
     }
     ${Row} {
-        padding: 64px 120px;
-        background: -webkit-gradient(
-            linear,
-            left top,
-            left bottom,
-            color-stop(80%, #EBEBEB),
-            color-stop(20%, #FFFFFF)
-        );
-        background: -o-linear-gradient(top, #EBEBEB 80%, #FFFFFF 20%);
-        background: linear-gradient(
-        to bottom,
-        #EBEBEB 80%,
-        #FFFFFF 20%
-        );
-
+        padding: 64px 36px;
+        background: #FFFFFF;
+        flex-direction: column;
         ${Column} {
-            width: 50%;
-
+            width: 100%;
             img {
                 width: 100%;
                 height: 350px;
                 object-fit: cover;
-                border-radius: 0 0 64px 0;
-            }
-
-            &.text {
-                justify-content: center;
-                .text-msg {
-                    padding-right: 48px;
-                }
             }
         }
-
-        &:nth-of-type(2n) {
+    }
+    @media screen and (min-width: 768px) {
+        ${Row} {
+            padding: 64px 120px;
+            flex-direction: row;
             background: -webkit-gradient(
                 linear,
                 left top,
                 left bottom,
-                color-stop(80%, #FFFFFF),
-                color-stop(20%, #EBEBEB)
+                color-stop(80%, #EBEBEB),
+                color-stop(20%, #FFFFFF)
             );
-            background: -o-linear-gradient(top, #FFFFFF 80%, #EBEBEB 20%);
+            background: -o-linear-gradient(top, #EBEBEB 80%, #FFFFFF 20%);
             background: linear-gradient(
             to bottom,
-            #FFFFFF 80%,
-            #EBEBEB 20%
+            #EBEBEB 80%,
+            #FFFFFF 20%
             );
+    
             ${Column} {
-                &.text {
-                    order: 1;
-                    padding-left: 24px;
-                }
+                width: 50%;
+    
                 img {
-                    border-radius: 0 0 0 64px;
+                    border-radius: 0 0 64px 0;
+                }
+    
+                &.text {
+                    justify-content: center;
+                    .text-msg {
+                        padding-right: 48px;
+                    }
                 }
             }
-        }
-        &:first-child {
-            padding-top: 100px;
-        }
-        &:last-child {
-            background: #FFFFFF;
+    
+            &:nth-of-type(2n) {
+                background: -webkit-gradient(
+                    linear,
+                    left top,
+                    left bottom,
+                    color-stop(80%, #FFFFFF),
+                    color-stop(20%, #EBEBEB)
+                );
+                background: -o-linear-gradient(top, #FFFFFF 80%, #EBEBEB 20%);
+                background: linear-gradient(
+                to bottom,
+                #FFFFFF 80%,
+                #EBEBEB 20%
+                );
+                ${Column} {
+                    &.text {
+                        order: 1;
+                        padding-left: 24px;
+                    }
+                    img {
+                        border-radius: 0 0 0 64px;
+                    }
+                }
+            }
+            &:first-child {
+                padding-top: 100px;
+            }
+            &:last-child {
+                background: #FFFFFF;
+            }
         }
     }
 `
-
-// when needed
-// background: -webkit-gradient(
-//     linear,
-//     left top,
-//     left bottom,
-//     color-stop(50%, green),
-//     color-stop(50%, blue)
-//   );
-//   background: -o-linear-gradient(top, green 50%, blue 50%);
-//   background: linear-gradient(
-//     to bottom,
-//     green 50%,
-//     blue 50%
-//   );
