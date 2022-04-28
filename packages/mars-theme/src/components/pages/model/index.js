@@ -24,8 +24,6 @@ const ModelPage = ({ state }) => {
         {title: MSG_4_TITLE, text: MSG_4_TEXT.split('\r\n\r\n'), img: MSG_4_IMG},
     ]
 
-    console.log(messages)
-
     return(
         <>
             <Wrapper>
@@ -39,7 +37,7 @@ const ModelPage = ({ state }) => {
             </Wrapper>
             <WrapperMessages>
                 {
-                    messages.map(msg => <MessageRow msg={msg} />)
+                    messages.map((msg, i) => <MessageRow key={i} msg={msg} />)
                 }
             </WrapperMessages>
         </>

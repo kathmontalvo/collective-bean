@@ -451,7 +451,7 @@ export const FooterSection = styled.footer`
         }
     }
     ${Column} {
-        width: 50%;
+        width: 60%;
         align-items: center;
         img.logo {
             width: 100%;

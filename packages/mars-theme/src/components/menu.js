@@ -12,7 +12,6 @@ import MenuModal from "./menu-modal";
  */
 function MobileMenu({ state, actions }) {
   const { menu, isMobileMenuOpen } = state.theme;
-  if (menu?.length === 0) return null;
 
   return state.frontity.mode === "amp" ? (
     <>
@@ -77,7 +76,7 @@ const MenuToggle = styled.button`
   width: 40px;
   display: none;
 
-  @media (max-width: 560px) {
+  @media (max-width: 767px) {
     display: flex;
     align-items: center;
     justify-content: center;

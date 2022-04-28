@@ -5,6 +5,7 @@ import MobileMenu from "./menu";
 import cbLogoImg from "../images/cb_isotipo_white.png"
 
 const Header = ({ state }) => {
+
   return (
     <>
       <Container>

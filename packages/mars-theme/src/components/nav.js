@@ -86,7 +86,7 @@ const NavContainer = styled.nav`
   font-family: 'Abel', sans-serif;
   text-transform: uppercase;
 
-  @media screen and (max-width: 560px) {
+  @media screen and (max-width: 767px) {
     display: none;
   }
 `;

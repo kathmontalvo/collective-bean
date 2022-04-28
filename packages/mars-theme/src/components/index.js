@@ -12,6 +12,8 @@ import Footer from "./footer";
 import BeanPlace from "./pages/bean-place";
 import ComingSoon from "./pages/coming-soon";
 import ModelPage from "./pages/model";
+import Desacata from "./pages/desacata";
+import Resources from "./pages/resources";
 
 
 /**
@@ -25,8 +27,8 @@ import ModelPage from "./pages/model";
 const Theme = ({ state }) => {
   // Get information about the current URL.
   const data = state.source.get(state.router.link);
-  console.log(data);
-
+  console.log('data--', data);
+  console.log(data.link === '/desacata/')
   return (
     <>
       {/* Add some metatags to the <head> of the HTML. */}
@@ -36,7 +38,9 @@ const Theme = ({ state }) => {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet" />
         <html lang="en" />
+
       </Head>
 
       {/* Add some global styles for the whole site, like body or a's. 
@@ -45,7 +49,7 @@ const Theme = ({ state }) => {
 
       {/* Add the header of the site. */}
       {
-        data.link !== '/' &&     
+        (data.link !== '/' && data.link !== '/desacata/') &&     
         
         <HeadContainer>
           <Header />
@@ -61,13 +65,15 @@ const Theme = ({ state }) => {
           <ComingSoon when={data.link == "/"}/>
           <Home when={data.id == 150} data={data} />
           <ModelPage when={data.link == "/our-model/"} />
+          <Resources when={data.link == "/resources/"} />
+          <Desacata when={data.link == "/desacata/"} />
           <Beans when={data.link == "/coffee-beans/" || data.link == "/cocoa-beans/"} data={data} />
           <BeanPlace when={data.isPostType} />
           <PageError when={data.isError} />
         </Switch>
       </Main>
       {
-        data.link !== '/' && <Footer></Footer>
+        (data.link !== '/' && data.link !== '/desacata/') && <Footer></Footer>
       }
 
     </>

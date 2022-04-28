@@ -1,6 +1,7 @@
 import { styled, connect, useConnect } from "frontity";
+import { useState } from "react"
 import Link from "./link";
-
+import arrowDown from "../images/icon-arrow-down.svg"
 /**
  * The modal containing the mobile menu items.
  *
@@ -9,30 +10,76 @@ import Link from "./link";
  */
 const MenuModal = ({ ...props }) => {
   const { state } = useConnect();
-  const { menu } = state.theme;
-  const isThereLinks = menu?.length > 0;
+  const [isToggle, setIsToggle] = useState(false)
+  const items = state.source.get(`/menu/${state.theme.menuUrl}/`).items;
+  
+  const isThereLinks = items?.length > 0;
 
+  const clickToggle = (param, id) => {
+    const el = document.getElementById(`childMenuModal-${id}`);
+    setIsToggle(!param)
+    if (!isToggle) {
+      el.style.display = "block"
+    } else {
+      el.style.display = "none"
+    }
+  }
+
+  
   return (
     <div {...props}>
       {state.frontity.mode !== "amp" && <MenuOverlay />}
       <MenuContent as="nav">
         {isThereLinks &&
-          menu.map(([name, link]) => (
-            <MenuLink
-              key={name}
-              link={link}
-              aria-current={state.router.link === link ? "page" : undefined}
-            >
-              {name}
-            </MenuLink>
-          ))}
+          Object.values(items).map((item, i) => {
+          if (!item.child_items) {
+            return  (
+              <MenuLink
+                as={Link}
+                key={item.title}
+                link={item.url}
+                aria-current={state.router.link === item.url ? "page" : undefined}
+              >
+                {item.title}
+              </MenuLink>
+            )
+          } else {
+            const childItems = item.child_items;
+
+            return(
+              <MenuLinkWithChildren key={`navItemWithChild-${item.ID}`} id={`navItemWithChild-${item.ID}`}>
+                <MenuLink onClick={() => clickToggle(isToggle, item.ID)}>
+                  {item.title}
+                  <img src={arrowDown} width={14} style={{ marginLeft: '8px'}} />
+                </MenuLink>
+                <ChildMenu id={`childMenuModal-${item.ID}`}>
+                  {childItems.map((childItem) => {
+                    return (
+                      <>
+                        <MenuLink
+                          as={Link}
+                          key={childItem.title}
+                          link={childItem.url}
+                          aria-current={state.router.link === childItem.url ? "page" : undefined}
+                        >
+                          {childItem.title}
+                        </MenuLink>
+                      </>
+                    )})}
+                </ChildMenu>
+                
+              </MenuLinkWithChildren>
+            )
+          }
+
+          })}
       </MenuContent>
     </div>
   );
 };
 
 const MenuOverlay = styled.div`
-  background-color: #1f38c5;
+  background-color: #162216;
   width: 100vw;
   height: 100vh;
   overflow: hidden auto;
@@ -45,9 +92,18 @@ const MenuOverlay = styled.div`
 const MenuContent = styled.div`
   z-index: 3;
   position: relative;
+  position: absolute;
+  width: 100vw;
+  left: 0;
+  padding: 48px 0;
 `;
 
-const MenuLink = styled(Link)`
+const MenuLinkWithChildren = styled.div`
+
+`
+
+
+const MenuLink = styled.div`
   width: 100%;
   display: inline-block;
   outline: 0;
@@ -65,5 +121,12 @@ const MenuLink = styled(Link)`
     font-weight: bold;
   }
 `;
+
+const ChildMenu = styled.div`
+  display: none;
+  ${MenuLink} {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+`
 
 export default connect(MenuModal, { injectProps: false });

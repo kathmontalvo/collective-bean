@@ -7,11 +7,11 @@ const MessageRow = ({ msg }) => {
             <Column className="text">
                 <TitleBold>{msg.title}</TitleBold>
                 <div className="text-msg">
-                    {msg.text.map(text => <TextBody>{text}</TextBody> )}
+                    {msg.text.map((text, i) => <TextBody key={i}>{text}</TextBody> )}
                 </div>
             </Column>
             <Column>
-                <img class="section-img" src={msg.img} alt={`Landscape describing ${msg.title}`} />
+                <img className="section-img" src={msg.img} alt={`Landscape describing ${msg.title}`} />
             </Column>
         </Row>
     )
