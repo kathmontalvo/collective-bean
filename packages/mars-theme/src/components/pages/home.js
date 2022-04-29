@@ -47,19 +47,19 @@ const Home = ({ state }) => {
                             <ModelList>
                                 <TextBody as={"li"}>
                                     <img src={arrowRight} />
-                                    <span>{MODEL_BULLET_1}</span>
+                                    <span dangerouslySetInnerHTML={{ __html: MODEL_BULLET_1}}></span>
                                 </TextBody>
                                 <TextBody as={"li"}>
                                     <img src={arrowRight} />
-                                    <span>{MODEL_BULLET_2}</span>
+                                    <span dangerouslySetInnerHTML={{ __html: MODEL_BULLET_2}}></span>
                                 </TextBody>
                                 <TextBody as={"li"}>
                                     <img src={arrowRight} />
-                                    <span>{MODEL_BULLET_3}</span>
+                                    <span dangerouslySetInnerHTML={{ __html: MODEL_BULLET_3}}></span>
                                 </TextBody> 
                                 <TextBody as={"li"}>
                                     <img src={arrowRight} />
-                                    <span>{MODEL_BULLET_4}</span>
+                                    <span dangerouslySetInnerHTML={{ __html: MODEL_BULLET_4}}></span>
                                 </TextBody> 
                             </ModelList>
                         </section>

@@ -26,19 +26,22 @@ const Container = styled.div`
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  padding: 24px 36px;
+  padding: 16px 36px;
   color: #fff;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   @media screen and (min-width: 768px) {
-    padding: 24px 120px;
+    padding: 12px 120px;
   }
 `;
 
 const Title = styled.img`
   margin: 0;
-  width: 55px;
+  width: 45px;
+  @media screen and (min-width: 768px) {
+    width: 55px;
+  }
 `;
 
 const StyledLink = styled(Link)`

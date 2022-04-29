@@ -62,7 +62,7 @@ const BeanPlace = ( { state, actions } ) => {
                         <TextBody dangerouslySetInnerHTML={{__html: description}}>
                         </TextBody>
                     </Column>
-                    <Column>
+                    <Column className="cardCol">
                         {
                             loteType.sort().map(lote => {
                                 return(

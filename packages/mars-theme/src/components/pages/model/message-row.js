@@ -7,7 +7,7 @@ const MessageRow = ({ msg }) => {
             <Column className="text">
                 <TitleBold>{msg.title}</TitleBold>
                 <div className="text-msg">
-                    {msg.text.map((text, i) => <TextBody key={i}>{text}</TextBody> )}
+                    {msg.text.map((text, i) => <TextBody key={i} dangerouslySetInnerHTML={{ __html: text}}></TextBody> )}
                 </div>
             </Column>
             <Column>

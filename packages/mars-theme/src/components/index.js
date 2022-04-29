@@ -14,6 +14,7 @@ import ComingSoon from "./pages/coming-soon";
 import ModelPage from "./pages/model";
 import Desacata from "./pages/desacata";
 import Resources from "./pages/resources";
+import Contact from "./pages/contact";
 
 
 /**
@@ -51,7 +52,7 @@ const Theme = ({ state }) => {
       {
         (data.link !== '/' && data.link !== '/desacata/') &&     
         
-        <HeadContainer>
+        <HeadContainer className={data.link.substring(1, data.link.length -1)}>
           <Header />
         </HeadContainer>
 
@@ -68,6 +69,7 @@ const Theme = ({ state }) => {
           <Resources when={data.link == "/resources/"} />
           <Desacata when={data.link == "/desacata/"} />
           <Beans when={data.link == "/coffee-beans/" || data.link == "/cocoa-beans/"} data={data} />
+          <Contact when={data.link == "/contact/"} />
           <BeanPlace when={data.isPostType} />
           <PageError when={data.isError} />
         </Switch>
@@ -102,6 +104,9 @@ const HeadContainer = styled.div`
   background: rgb(18,52,15);
   background: linear-gradient(180deg, #162216 6.77%, rgba(22, 34, 22, 0) 100%);
   background-blend-mode: hard-light;
+  &.contact, &.our-model {
+    background: #162216;
+  }
 `;
 
 const Main = styled.div`

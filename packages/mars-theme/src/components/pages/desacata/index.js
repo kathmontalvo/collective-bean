@@ -1,4 +1,4 @@
-import { connect, styled } from "frontity";
+import { connect, styled, keyframes } from "frontity";
 import desacataLogoDark from "../../../images/logo_desacata.png";
 import desacataLogoWhite from "../../../images/logo_desacata_white.png";
 import CBlogo from "../../../images/cb_logo_white.png"
@@ -6,6 +6,7 @@ import fbIconDark from "../../../images/fb_dark.svg";
 import igIconDark from "../../../images/ig_dark.svg";
 import fbIcon from "../../../images/fb.svg";
 import igIcon from "../../../images/ig.svg";
+import whatsappIcon from "../../../images/whatsapp.svg";
 import bgThunder from "../../../images/bg-thunder.png";
 import Link from "../../link";
 import { Column, FooterSection, Row } from "../../../styles/styles";
@@ -49,6 +50,8 @@ const Desacata = ({ state }) => {
         ]
     }
 
+    const whatsappRedirect = 'https://api.whatsapp.com/send/?phone=51923552312&text=Hola!+Me+interesa+adquirir+sus+productos&app_absent=0';
+
     return(
         <>
             <Main>
@@ -67,7 +70,7 @@ const Desacata = ({ state }) => {
                     <div className="text">
                         <h2>{TITLE}</h2>
                         <p>{SUBTITLE}</p>
-                        <button>unete</button>
+                        <Link link={whatsappRedirect} target="_blank" rel="noopener noreferrer">unete</Link>
                     </div>
                     <div className="imgs">
                         <img src={IMG_1} alt="Bolsa de café Desacata"/>
@@ -75,6 +78,9 @@ const Desacata = ({ state }) => {
                     </div>
                 </section>
             </Main>
+            <Float href={whatsappRedirect} target="_blank" rel="noopener noreferrer" className="float">
+                <img className="my-float" src={whatsappIcon} alt="Icono de Whatsapp" />
+            </Float>
             <ProductSection>
                 <div className="product-title">
                     <h3>{coffeeProducts.title}</h3>
@@ -137,6 +143,28 @@ const Desacata = ({ state }) => {
 
 export default connect(Desacata)
 
+const shrink = keyframes`
+    0% {
+        width: 70px;
+        height: 70px;
+    }
+    100% {
+        width: 65px
+        height: 65px;
+    }
+`
+const shrinkSmall = keyframes`
+    0% {
+        width: 40px;
+        height: 40px;
+    }
+    100% {
+        width: 35px
+        height: 35px;
+    }
+`
+
+
 const Main = styled.section`
     width: auto;
     height: 75vh;
@@ -189,7 +217,7 @@ const Main = styled.section`
                 font-size: 14px;
                 margin-bottom: 24px;
             }
-            button {
+            a {
                 font-family: 'Abel', sans-serif;
                 font-size: 16px;
                 border: none;
@@ -238,7 +266,7 @@ const Main = styled.section`
                     font-size: 20px;
                     margin-bottom: 48px;
                 }
-                button {
+                a {
                     font-size: 24px;
                     padding: 16px 48px;
                 }
@@ -268,6 +296,28 @@ const Main = styled.section`
         }
     }
 `
+
+const Float = styled(Link)`
+	position:fixed;
+	width:65px;
+	height:65px;
+	bottom:40px;
+	right:40px;
+	background-color:#25D366;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+    display: flex;
+    animation: ${shrink} 1.5s infinite alternate;
+
+    .my-float{
+        animation: ${shrinkSmall} 1.5s infinite alternate;
+        margin: auto;
+        width: 35px
+    }
+`
+
 const ProductSection = styled.section`
     font-family: 'Courier Prime', 'serif';
 

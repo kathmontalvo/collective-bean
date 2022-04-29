@@ -85,7 +85,8 @@ const NavContainer = styled.nav`
   margin: 0;
   font-family: 'Abel', sans-serif;
   text-transform: uppercase;
-
+  align-items: center;
+  
   @media screen and (max-width: 767px) {
     display: none;
   }

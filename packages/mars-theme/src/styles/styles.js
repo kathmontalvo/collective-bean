@@ -174,11 +174,6 @@ const animatePop = keyframes`
         transform: scale(1, 1);
     }
 `
-const propsAnimatePop = `
-    animation-duration: 0.5s;
-    animation-name: ${fadeAnimation};
-    animation-timing-function: cubic-bezier(.26, .53, .74, 1.48);
-`
 
 
 // Home page
@@ -316,7 +311,7 @@ export const WrapperDiscover = styled.div`
     padding: 100px 36px;
     background-color: #162216;
     border-radius: 60px 0 0 0;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     ${ShadowImage} {
@@ -329,6 +324,7 @@ export const WrapperDiscover = styled.div`
         margin-top: 36px;
     }
     @media screen and (min-width: 768px) {
+        display: flex;
         padding: 120px 80px;
         flex-direction: row;
         border-radius: 80px 0 0 0;
@@ -385,46 +381,93 @@ export const BeanCard = styled.div`
         padding: 0 24px;
     }
     ${ButtonSecondary}, ${TextBody} {
-        visibility: hidden;
         text-align: center
     }
-    &:hover {
-        transition: 0.5s all linear;
-
+    &.first {
+        background-color: #162216;
+        border: 1px solid #162216;
+        color: #FFFFFF;
         ${ButtonSecondary}, ${TextBody} {
-            transition: visibility 0.3s linear 0.1s;
-            visibility: visible;
-        }
-        &.first {
-            background-color: #162216;
-            border: 1px solid #162216;
             color: #FFFFFF;
-            ${ButtonSecondary}, ${TextBody} {
-                color: #FFFFFF;
-            }
         }
-        &.second {
-            background-color: #FFFFFF;
-            color: ##162216;
-            ${ButtonSecondary}, ${TextBody}, ${TitleBold} {
-                color: #162216;
-            }
-            ${ButtonSecondary} {
-                transition: border 0.3s linear 0.2s;
-                border: 1px solid #162216;
-                &:hover {
-                    color: #FFFFFF;
-                    border: 1px solid #B63EB6;
-                }
+    }
+    &.second {
+        background-color: #FFFFFF;
+        color: #162216;
+        ${ButtonSecondary}, ${TextBody}, ${TitleBold} {
+            color: #162216;
+        }
+        ${ButtonSecondary} {
+            transition: border 0.3s linear 0.2s;
+            border: 1px solid #162216;
+            &:hover {
+                color: #FFFFFF;
+                border: 1px solid #B63EB6;
             }
         }
     }
+
     @media screen and (min-width: 768px) {
         width: 35%;
         margin-bottom: 0;
         padding: 56px 24px;
         img {
             height: 180px;
+        }
+        ${TitleBold} {
+            color: #FFFFFF;
+            text-align: center;
+            margin-top: 16px;
+            margin-bottom: 16px;
+        }
+        ${TextBody} {
+            padding: 0 24px;
+        }
+        ${ButtonSecondary}, ${TextBody} {
+            visibility: hidden;
+            text-align: center;
+            color: #FFFFFF;
+        }
+        &.first {
+            background-color: transparent;
+        }
+        &.second {
+            background-color: transparent;
+            ${ButtonSecondary}, ${TextBody} {
+                color: #FFFFFF;
+            }
+        }
+
+        &:hover {
+            transition: 0.5s all linear;
+    
+            ${ButtonSecondary}, ${TextBody} {
+                transition: visibility 0.3s linear 0.1s;
+                visibility: visible;
+            }
+            &.first {
+                background-color: #162216;
+                border: 1px solid #162216;
+                color: #FFFFFF;
+                ${ButtonSecondary}, ${TextBody} {
+                    color: #FFFFFF;
+                }
+            }
+            &.second {
+                background-color: #FFFFFF;
+                color: #162216;
+                ${ButtonSecondary}, ${TextBody}, ${TitleBold} {
+                    color: #162216;
+                }
+                ${ButtonSecondary} {
+                    transition: border 0.3s linear 0.2s;
+                    border: 1px solid #162216;
+                    &:hover {
+                        color: #FFFFFF;
+                        border: 1px solid #B63EB6;
+                    }
+                }
+            }
         }
     }
 `
@@ -573,8 +616,12 @@ export const WrapperBeanPlace = styled(Wrapper)`
                 }
             }
             .titleCol{
-                padding: 180px 0
+                padding: 180px 0;
+                animation: 1s ${fadeAnimation} 0.1s backwards;
             } 
+            .cardCol {
+                animation: 1s ${fadeAnimation} 0.1s backwards;
+            }
         }
     }
     @media screen and (min-width: 1200px) {
@@ -584,6 +631,7 @@ export const WrapperBeanPlace = styled(Wrapper)`
 
 export const CardVisible = styled.section`
     display: block;
+    animation: 0.5s ${fadeAnimation} -0.05s backwards;
 `
 export const CardHover = styled(Row)`
     display: none;
@@ -592,6 +640,8 @@ export const CardHover = styled(Row)`
     justify-content: center;
     padding: 0 18px;
     color: #FFFFFF;
+    animation: 0.5s ${fadeAnimation} -0.05s backwards;
+
 
     &.microlots.coffee-bean {
         background-color: #D1C066;
@@ -773,12 +823,13 @@ export const WrapperRanges = styled(Wrapper)`
             ${Row} {
                 padding: 32px 24px;
                 width: 90%;
+                height: 150px;
                 ${Column} {
                     justify-content: center;
                     width: 65%;
                     ${TextBody} {
                         color: #FFFFFF;
-                        margin: 8px;
+                        margin: 4px;
                     }
                 }
                 img {
@@ -804,14 +855,17 @@ export const WrapperRanges = styled(Wrapper)`
             flex-direction: row;
             ${CardHover} {
                 width: 50%;
-                ${Column} {
-                    width: 60%;
-                    ${TextBody} {
-                        margin: 0;
+                ${Row} {
+                    height: 160px;
+                    ${Column} {
+                        width: 60%;
+                        ${TextBody} {
+                            margin: 0;
+                        }
                     }
-                }
-                img {
-                    width: 40%;
+                    img {
+                        width: 40%;
+                    }
                 }
             }
         }
@@ -825,7 +879,7 @@ export const WrapperRanges = styled(Wrapper)`
 export const WrapperBanner = styled.section`
     padding: 64px 36px 90px;
     text-align: center;
-    animation: 0.3s ${fadeAnimation} 0.3s backwards;
+    animation: 0.5s ${fadeAnimation} 0.3s backwards;
 
     ${TitleNormal}{
         color: #FFFFFF;
@@ -845,7 +899,7 @@ export const WrapperBanner = styled.section`
     }
     @media screen and (min-width: 1200px) {
         max-width: 100%; 
-        padding: 70px 120px;
+        padding: 135px 120px;
         ${TitleNormal}{
             margin-top: 36px;
         }
@@ -876,6 +930,7 @@ export const WrapperMessages = styled(Wrapper)`
                 width: 100%;
                 height: 350px;
                 object-fit: cover;
+                object-position: 10% 20%;
             }
         }
     }
