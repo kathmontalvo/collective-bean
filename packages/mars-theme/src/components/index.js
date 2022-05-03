@@ -28,8 +28,6 @@ import Contact from "./pages/contact";
 const Theme = ({ state }) => {
   // Get information about the current URL.
   const data = state.source.get(state.router.link);
-  console.log('data--', data);
-  console.log(data.link === '/desacata/')
   return (
     <>
       {/* Add some metatags to the <head> of the HTML. */}

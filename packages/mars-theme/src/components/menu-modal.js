@@ -36,7 +36,7 @@ const MenuModal = ({ ...props }) => {
             return  (
               <MenuLink
                 as={Link}
-                key={item.title}
+                key={i}
                 link={item.url}
                 aria-current={state.router.link === item.url ? "page" : undefined}
               >
@@ -53,12 +53,12 @@ const MenuModal = ({ ...props }) => {
                   <img src={arrowDown} width={14} style={{ marginLeft: '8px'}} />
                 </MenuLink>
                 <ChildMenu id={`childMenuModal-${item.ID}`}>
-                  {childItems.map((childItem) => {
+                  {childItems.map((childItem, i) => {
                     return (
                       <>
                         <MenuLink
                           as={Link}
-                          key={childItem.title}
+                          key={i}
                           link={childItem.url}
                           aria-current={state.router.link === childItem.url ? "page" : undefined}
                         >

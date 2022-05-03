@@ -30,7 +30,7 @@ const Home = ({ state }) => {
                 <WrapperWelcome>
                     <h1>{WELCOME_TITLE_1}</h1>
                     <h2>{WELCOME_SUBTITLE_1}</h2>
-                    <MainButton>{WELCOME_CTA}</MainButton>
+                    <MainButton as={Link} link='/contact'>{WELCOME_CTA}</MainButton>
                 </WrapperWelcome>
             </Wrapper>
             <Wrapper>

@@ -9,7 +9,7 @@ import igIcon from "../../../images/ig.svg";
 import whatsappIcon from "../../../images/whatsapp.svg";
 import bgThunder from "../../../images/bg-thunder.png";
 import Link from "../../link";
-import { Column, FooterSection, Row } from "../../../styles/styles";
+import { Column, fadeAnimation, FooterSection, Row } from "../../../styles/styles";
 
 
 const Desacata = ({ state }) => {
@@ -119,7 +119,7 @@ const Desacata = ({ state }) => {
             </ProductSection>
             <FooterSection style={{backgroundColor: '#231F20'}}>
                 <Column>
-                    <Link link={'/home-3/'}>
+                    <Link link={'/home/'}>
                         <img className="logo" src={CBlogo} alt="Logotipo Collective Bean"/>
                     </Link>
                 </Column>
@@ -205,6 +205,8 @@ const Main = styled.section`
         flex-direction: row;
         justify-content: space-around;
         align-items: center;
+        animation: 0.9s ${fadeAnimation} 0.1s backwards;
+
         .text {
             width: 100%;
             padding: 24px;

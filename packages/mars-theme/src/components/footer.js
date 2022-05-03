@@ -29,10 +29,10 @@ const Footer = ({ state }) => {
                 <img className="logo" src={CBlogo} alt="Logotipo Collective Bean"/>
             </Column>
             <Column as={"ul"}>
-                {items.map((item) => {
+                {items.map((item, i) => {
                   if (!item.child_items) {
                       return (
-                          <li key={item.ID}>
+                          <li key={i}>
                               <Link link={item.url}>
                                   {item.title}
                               </Link>
@@ -49,8 +49,8 @@ const Footer = ({ state }) => {
                                 </div>
                             </li>
                             <div id={`childMenuFooter-${item.ID}`} style={{display: 'none'}}>
-                                {childItems.map(childItem => 
-                                    <li key={childItem.ID}>
+                                {childItems.map((childItem, i) => 
+                                    <li key={i}>
                                         <Link link={childItem.url}>
                                             {childItem.title}
                                         </Link>

@@ -17,6 +17,7 @@
   },
   "prettier": {},
   "dependencies": {
+    "@emailjs/browser": "^3.6.2",
     "@frontity/core": "^1.15.1",
     "@frontity/hooks": "^2.2.2",
     "@frontity/html2react": "^1.7.0",

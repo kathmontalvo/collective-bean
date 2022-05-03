@@ -157,7 +157,7 @@ export const BackgroundImage = styled.img`
     }
 `
 
-const fadeAnimation = keyframes`
+export const fadeAnimation = keyframes`
     0% { opacity: 0; }
     50% { opacity: 0.5; }
     75% { opacity: 0.75; }
@@ -350,6 +350,7 @@ export const WrapperBeans = styled.section`
     justify-content: space-between;
     width: auto;
     background-size: cover;
+    
     @media screen and (min-width: 768px) {
         padding: 120px 80px;
         flex-direction: row;
@@ -430,10 +431,11 @@ export const BeanCard = styled.div`
         }
         &.first {
             background-color: transparent;
+            border-color: #FFFFFF;
         }
         &.second {
             background-color: transparent;
-            ${ButtonSecondary}, ${TextBody} {
+            ${ButtonSecondary}, ${TextBody}, ${TitleBold} {
                 color: #FFFFFF;
             }
         }
@@ -542,6 +544,7 @@ export const WrapperBeansPage = styled(Wrapper)`
     ${TitleBold} {
         color: #FFFFFF;
         text-align: center;
+        animation: 0.5s ${fadeAnimation} 0.3s backwards;
     }
     @media screen and (min-width: 768px) {
         padding: 36px 64px;
@@ -564,6 +567,7 @@ export const BackgroundMenu = styled.div`
 export const ImgMap = styled.svg`
     margin: 24px auto;
     width: 100%;
+    animation: 0.5s ${fadeAnimation} 0.3s backwards;
 
     @media screen and (min-width: 768px) {
         width: 80%;
@@ -991,7 +995,7 @@ export const WrapperMessages = styled(Wrapper)`
                     }
                 }
             }
-            &:first-child {
+            &:first-of-type {
                 padding-top: 100px;
             }
             &:last-child {

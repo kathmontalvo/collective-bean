@@ -38,7 +38,7 @@ const Beans = ({ state, actions }) => {
 		<WrapperBeansPage>
       <BackgroundMenu></BackgroundMenu>
 			<TitleBold>
-				Our { isCoffeeBeans ? 'Coffees' : 'Cocoas' }
+				Our { isCoffeeBeans ? 'Coffees' : 'Cacaos' }
 			</TitleBold>
       { isCoffeeBeans ? <CoffeeMap hoverPoint={hoverPoint} goToPage={goToPage} /> : <CacaoMap hoverPoint={hoverPoint} goToPage={goToPage} /> }
 		</WrapperBeansPage>
