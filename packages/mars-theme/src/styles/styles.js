@@ -105,7 +105,7 @@ export const Column = styled.div`
 
 export const BackgroundImage = styled.img`
     width: 100%;
-    height: 100vh;
+    height: fit-content;
     z-index: -2;
     object-fit: cover;
     position: absolute;
@@ -113,47 +113,7 @@ export const BackgroundImage = styled.img`
     left: 0;
     filter: brightness(0.5);
     &.welcome {
-        height: 120vh;
-    }
-    @media screen and (min-width: 320px) and (max-height: 640px){
-        &.welcome {
-            height: 115vh;
-        }
-    }
-    @media screen and (min-width: 320px) and (min-height: 641px){
-        &.welcome {
-            height: 90vh;
-        }
-    }
-    @media screen and (min-width: 320px) and (min-height: 844px){
-        &.welcome {
-            height: 80vh;
-        }
-    }
-    @media screen and (min-width: 768px) and (max-height: 640px){
-        &.welcome {
-            height: 100vh;
-        }
-    }
-    @media screen and (min-width: 768px) and (min-height: 641px){
-        &.welcome {
-            height: 90vh;
-        }
-    }
-    @media screen and (min-width: 768px) and (min-height: 1024px){
-        &.welcome {
-            height: 65vh;
-        }
-    }
-    @media screen and (min-width: 768px) and (min-height: 1350px){
-        &.welcome {
-            height: 65vh;
-        }
-    }
-    @media screen and (min-width: 1200px) {
-        &.welcome {
-            height: 105vh;
-        }
+        height: fit-content;
     }
 `
 
@@ -179,7 +139,7 @@ const animatePop = keyframes`
 // Home page
 
 export const WrapperWelcome = styled.section`
-    padding: 64px 36px 90px;
+    padding: 90px 36px 90px;
     color: #FFFFFF;
 
     & h1 {
@@ -234,12 +194,14 @@ export const ShadowImage = styled.img`
 `
 
 export const WrapperModel = styled.section`
-    padding: 100px 36px;
+    padding: 120px 36px;
+
     ${TitleNormal}, ${TitleBold}, ${Subtitle} {
         color: #B63EB6;
     }
+
     @media screen and (min-width: 768px) {
-        padding: 80px 80px;
+        padding: 150px 80px;
     }
     @media screen and (min-width: 1200px) {
         padding: 120px;
@@ -661,7 +623,7 @@ export const CardHover = styled(Row)`
     }
 
     img, ${Subtitle}, ${ButtonSecondary} {
-        width: 33%;
+        width: 50%;
     }
 
     img {
@@ -690,6 +652,7 @@ export const BeanCardWrapper = styled(Wrapper)`
         object-fit: cover;
         width: 100%;
         height: 200px;
+        margin-bottom: -4px;
     }
     .loteTxt {
         text-align: center;
@@ -839,7 +802,8 @@ export const WrapperRanges = styled(Wrapper)`
                     }
                 }
                 img {
-                    width: 35%;
+                    height: 70%;
+                    width: auto;
                 }
             }
     
@@ -870,7 +834,7 @@ export const WrapperRanges = styled(Wrapper)`
                         }
                     }
                     img {
-                        width: 40%;
+                        height: 80%;
                     }
                 }
             }
@@ -878,6 +842,15 @@ export const WrapperRanges = styled(Wrapper)`
     }
     @media screen and (min-width: 1200px) {
         padding: 120px 200px;
+        .content {
+            ${CardHover} {
+                ${Row} {
+                    img {
+                        height: 100%;
+                    }
+                }
+            }
+        }
     }
 `
 // Model
@@ -892,8 +865,12 @@ export const WrapperBanner = styled.section`
     }
     ${TitleBold} {
         margin-top: 8px;
+        margin-bottom: 36px;
         color: #B63EB6;
         text-shadow: -1px 0px 0px #b63eb6;
+    }
+    ${MainButton} {
+        padding: 12px 24px;
     }
 
     @media screen and (min-width: 768px) {
@@ -901,6 +878,9 @@ export const WrapperBanner = styled.section`
         ${TitleBold} {
             margin: 36px auto;
             text-shadow: none;
+        }
+        ${MainButton} {
+            padding: 14px 40px;
         }
     }
     @media screen and (min-width: 1200px) {

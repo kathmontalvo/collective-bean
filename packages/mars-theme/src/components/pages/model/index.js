@@ -1,7 +1,9 @@
 import { connect } from "frontity";
-import { BackgroundImage, Column, TitleBold, TitleNormal, Wrapper, WrapperBanner, WrapperMessages } from "../../../styles/styles";
-import MessageRow from "./message-row";
 import { IKImage, IKContext } from 'imagekitio-react'
+import { BackgroundImage, Column, MainButton, TitleBold, TitleNormal, Wrapper, WrapperBanner, WrapperMessages } from "../../../styles/styles";
+import MessageRow from "./message-row";
+import Link from "../../link";
+
 
 const ModelPage = ({ state }) => {
     const data = state.source.get(state.router.link);
@@ -11,7 +13,7 @@ const ModelPage = ({ state }) => {
     const acf = post.acf;
 
     const {
-        MODEL_TITLE_1, MODEL_TITLE_2, MODEL_BG_IMG,
+        MODEL_TITLE_1, MODEL_TITLE_2, MODEL_BG_IMG, BTN_CTA,
         MSG_1_TITLE, MSG_1_TEXT, MSG_1_IMG,
         MSG_2_TITLE, MSG_2_TEXT, MSG_2_IMG,
         MSG_3_TITLE, MSG_3_TEXT, MSG_3_IMG,
@@ -36,6 +38,7 @@ const ModelPage = ({ state }) => {
                         {MODEL_TITLE_1}
                     </TitleNormal>
                     <TitleBold>{MODEL_TITLE_2}</TitleBold>
+                    <MainButton as={Link} link='/contact'>{BTN_CTA}</MainButton>
                 </WrapperBanner>
             </Wrapper>
             <WrapperMessages>

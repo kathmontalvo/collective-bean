@@ -80,21 +80,21 @@ const Nav = ({ state }) => {
 export default connect(Nav);
 
 const NavContainer = styled.nav`
-  display: flex;
+  display: none;
   box-sizing: border-box;
   margin: 0;
   font-family: 'Abel', sans-serif;
   text-transform: uppercase;
   align-items: center;
   
-  @media screen and (max-width: 767px) {
-    display: none;
+  @media screen and (min-width: 768px) {
+    display: flex;
   }
 `;
 
 const NavItem = styled.div`
   padding: 6px 0;
-  margin: 0 16px;
+  margin: 0 auto;
   color: #fff;
   font-size: 0.9em;
   box-sizing: border-box;
@@ -116,6 +116,9 @@ const NavItem = styled.div`
   }
   .childTitle {
     cursor: default;
+  }
+  @media screen and (min-width: 1200px) {
+    margin: 0 16px;
   }
 `;
 

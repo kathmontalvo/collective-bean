@@ -78,7 +78,7 @@ const BeanPlace = ( { state, actions } ) => {
                             loteType.sort().map(lote => {
                                 return(
                                     <>
-                                        <BeanCard title={title} img={lote === 16 ? comunalImg : microlotImg} loteType={lote === 16 ? 'Comunales' : 'Microlots'} beanType={beanType} />
+                                        <BeanCard title={title} img={lote === 16 ? microlotImg : comunalImg} loteType={lote === 16 ? 'Microlots' : 'Comunales'} beanType={beanType} />
                                     </>
                                 )
                             })

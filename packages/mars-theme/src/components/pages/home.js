@@ -18,9 +18,6 @@ const Home = ({ state }) => {
     } = acf;
 
     const changeBgImage = (e, bgImg) => {
-        // e.target.style.backgroundImage = url(bgImg)
-        console.log(e);
-        console.log(e.target.children[1].src);
         e.target.children[1].src = bgImg
     }
     

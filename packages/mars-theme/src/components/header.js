@@ -32,8 +32,12 @@ const Container = styled.div`
   flex-direction: row;
   justify-content: space-between;
   @media screen and (min-width: 768px) {
+    padding: 12px 80px;
+  }
+  @media screen and (min-width: 1200px) {
     padding: 12px 120px;
   }
+
 `;
 
 const Title = styled.img`
