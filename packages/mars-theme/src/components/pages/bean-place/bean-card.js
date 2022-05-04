@@ -4,6 +4,7 @@ import microlotCafeIcon from "../../../images/cafe-icon.svg"
 import comunalCafeIcon from "../../../images/cerro-icon.svg"
 import microlotCacaoIcon from "../../../images/cacao-icon.svg"
 import comunalCacaoIcon from "../../../images/valle-icon.svg"
+import Link from "../../link";
 
 
 const BeanCard = ({img, loteType, beanType, title}) => {
@@ -26,7 +27,7 @@ const BeanCard = ({img, loteType, beanType, title}) => {
                 <Subtitle>
                     {title.toUpperCase()}
                 </Subtitle>
-                <ButtonSecondary>Get it!</ButtonSecondary>
+                <ButtonSecondary as={Link} link='/contact'>Get it!</ButtonSecondary>
             </CardHover>
         </BeanCardWrapper>
     )

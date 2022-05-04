@@ -15,15 +15,16 @@ const Beans = ({ state, actions }) => {
 
     const stroke = document.querySelector(`.${className}-stroke`)
     const text = document.querySelector(`.${className}-text`)
+    const point = document.querySelector(`.${className}-point`)
 
     const colorPoint = isCoffeeBeans ? "#74FF90" : "#D65BD6"
 
-    e.target.style.fill =  isShow ? "#B63EB6" : colorPoint;
+    point.style.fill =  isShow ? "#B63EB6" : colorPoint;
     e.target.style.cursor =  "pointer";
     stroke.style.stroke = isShow ? "#B63EB6" : "white";
     text.style.fill = isShow ? "#B63EB6" : "white";
 
-    e.target.style.transition =  "fill 0.5 linear 0.5";
+    point.style.transition =  "fill 0.5 linear 0.5";
     stroke.style.transition = "stroke 0.5 linear 0.5";
     text.style.transition = "fill 0.5 linear 0.5";
 

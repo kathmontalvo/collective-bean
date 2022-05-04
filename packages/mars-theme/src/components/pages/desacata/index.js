@@ -10,6 +10,7 @@ import whatsappIcon from "../../../images/whatsapp.svg";
 import bgThunder from "../../../images/bg-thunder.png";
 import Link from "../../link";
 import { Column, fadeAnimation, FooterSection, Row } from "../../../styles/styles";
+import { IKImage, IKContext } from 'imagekitio-react'
 
 
 const Desacata = ({ state }) => {
@@ -39,7 +40,7 @@ const Desacata = ({ state }) => {
         ]
     }
     const cacaoProducts = {
-        title: 'cacaos',
+        title: 'chocolates',
         products: [ 
             { title: CACAO_1_TITLE, img: CACAO_1_IMG },
             { title: CACAO_2_TITLE, img: CACAO_2_IMG },
@@ -50,7 +51,8 @@ const Desacata = ({ state }) => {
         ]
     }
 
-    const whatsappRedirect = 'https://api.whatsapp.com/send/?phone=51923552312&text=Hola!+Me+interesa+adquirir+sus+productos&app_absent=0';
+    const whatsappRedirect = 'https://api.whatsapp.com/send/?phone=51923552312&text=Hola!+Me+interesa+adquirir+sus+productos.';
+    const whatsappProductRedirect = 'https://api.whatsapp.com/send/?phone=51923552312&text=Hola!+Quisiera+informacion+y+precio+de';
 
     return(
         <>
@@ -73,8 +75,10 @@ const Desacata = ({ state }) => {
                         <Link link={whatsappRedirect} target="_blank" rel="noopener noreferrer">unete</Link>
                     </div>
                     <div className="imgs">
-                        <img src={IMG_1} alt="Bolsa de café Desacata"/>
-                        <img src={IMG_2} alt="Bolsa de cacao Desacata" />
+                        <IKContext urlEndpoint="https://ik.imagekit.io/n5oedf70g6">
+                            <IKImage src={IMG_1} alt="Bolsa de café Desacata" />
+                            <IKImage src={IMG_2} alt="Bolsa de cacao Desacata" />
+                        </IKContext>
                     </div>
                 </section>
             </Main>
@@ -89,10 +93,13 @@ const Desacata = ({ state }) => {
                     {
                         coffeeProducts.products.filter((el) => el.title !== '').map((prod, i) => 
                             <CardProduct key={i}>
-                                <img src={prod.img} />
-                                <p>
+                                {/* <img src={prod.img} /> */}
+                                <IKContext urlEndpoint="https://ik.imagekit.io/n5oedf70g6">
+                                    <IKImage src={prod.img} alt={prod.title} />
+                                </IKContext>
+                                <Link link={`${whatsappProductRedirect}:+cafe+-+${prod.title}`} target="_blank" rel="noopener noreferrer">
                                     {prod.title}
-                                </p>
+                                </Link>
                             </CardProduct>
                         )
                     }
@@ -107,10 +114,12 @@ const Desacata = ({ state }) => {
                     {
                         cacaoProducts.products.filter((el) => el.title !== '').map((prod, i) => 
                             <CardProduct key={i}>
-                                <img src={prod.img} />
-                                <p>
+                                <IKContext urlEndpoint="https://ik.imagekit.io/n5oedf70g6">
+                                    <IKImage src={prod.img} alt={prod.title} />
+                                </IKContext>
+                                <Link link={`${whatsappProductRedirect}:+chocolate+-+${prod.title}`} target="_blank" rel="noopener noreferrer">
                                     {prod.title}
-                                </p>
+                                </Link>
                             </CardProduct>
                         )
                     }
@@ -129,10 +138,10 @@ const Desacata = ({ state }) => {
                 <Column>
                     <Row>
                         <Link link={FB_URL} target="_blank" rel="noopener noreferrer">
-                            <img src={fbIcon} />
+                            <img src={fbIcon} alt="Fb Icon" />
                         </Link>
                         <Link link={IG_URL} target="_blank" rel="noopener noreferrer">
-                            <img src={igIcon} />
+                            <img src={igIcon} alt="Instagram Icon"/>
                         </Link>
                     </Row>
                 </Column>
@@ -367,11 +376,12 @@ const CardProduct = styled.div`
     img {
         width: 95%;
     }
-    p {
+    a {
         width: 95%;
         margin: 12px auto;
         text-align: center;
         font-size: 24px;
+        display: block;
     }
     @media screen and (min-width: 768px) {
         width: 33%;

@@ -113,7 +113,7 @@ export const BackgroundImage = styled.img`
     left: 0;
     filter: brightness(0.5);
     &.welcome {
-        height: 120h;
+        height: 120vh;
     }
     @media screen and (min-width: 320px) and (max-height: 640px){
         &.welcome {
@@ -152,7 +152,7 @@ export const BackgroundImage = styled.img`
     }
     @media screen and (min-width: 1200px) {
         &.welcome {
-            height: 110vh;
+            height: 105vh;
         }
     }
 `
@@ -677,6 +677,8 @@ export const CardHover = styled(Row)`
     ${ButtonSecondary} {
         padding: 16px 32px;
         margin: 2px;
+        text-align: center;
+        width: 20%
     }
 `
 

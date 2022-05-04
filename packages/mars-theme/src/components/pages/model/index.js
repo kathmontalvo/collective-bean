@@ -1,6 +1,7 @@
 import { connect } from "frontity";
 import { BackgroundImage, Column, TitleBold, TitleNormal, Wrapper, WrapperBanner, WrapperMessages } from "../../../styles/styles";
 import MessageRow from "./message-row";
+import { IKImage, IKContext } from 'imagekitio-react'
 
 const ModelPage = ({ state }) => {
     const data = state.source.get(state.router.link);
@@ -27,7 +28,9 @@ const ModelPage = ({ state }) => {
     return(
         <>
             <Wrapper>
-                <BackgroundImage src={MODEL_BG_IMG} alt="Fondo Model Page" />
+                <IKContext urlEndpoint="https://ik.imagekit.io/n5oedf70g6">
+                    <BackgroundImage as={IKImage} src={MODEL_BG_IMG} alt="Fondo principal"/>
+                </IKContext>
                 <WrapperBanner>
                     <TitleNormal>
                         {MODEL_TITLE_1}

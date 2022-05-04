@@ -1,4 +1,5 @@
 import { connect } from "frontity";
+import { useEffect } from "react";
 import { Wrapper, WrapperBeanPlace, BackgroundImage, MainButton, TitleNormal, TitleBold, WrapperModel, WrapperModelTop, TextBody, WrapperModelBottom, Subtitle, ModelList, ShadowImage, WrapperDiscover, WrapperBeans, ButtonSecondary, Row, Column, WrapperRanges, CardHover } from "../../../styles/styles";
 import BeanCard from "./bean-card";
 import BeanChart from "./bean-chart";
@@ -6,6 +7,7 @@ import CafeMicrolotCircle from "../../../images/cafe-icon-circle.svg"
 import CafeComunalCircle from "../../../images/cerro-icon-circle.svg"
 import CacaoMicrolotCircle from "../../../images/cacao-icon-circle.svg"
 import CacaoComunalCircle from "../../../images/valle-icon-circle.svg"
+import { IKImage, IKContext } from 'imagekitio-react'
 
 const BeanPlace = ( { state, actions } ) => {
     const data = state.source.get(state.router.link);
@@ -16,6 +18,13 @@ const BeanPlace = ( { state, actions } ) => {
     const acf = post.acf;
     const beanType = post.type;
     const loteType = post.lote_type;
+
+    useEffect(() => {
+        window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+        });
+    }, [])
 
     const microlotIcon = beanType === 'coffee-bean' ? CafeMicrolotCircle : CacaoMicrolotCircle;
     const comunalIcon = beanType === 'coffee-bean' ? CafeComunalCircle : CacaoComunalCircle;
@@ -55,7 +64,9 @@ const BeanPlace = ( { state, actions } ) => {
     return (
         <>
             <WrapperBeanPlace>
-                <BackgroundImage as={'img'} src={bgImgSrc}></BackgroundImage>
+                <IKContext urlEndpoint="https://ik.imagekit.io/n5oedf70g6">
+                    <BackgroundImage as={IKImage} src={bgImgSrc} alt="Fondo principal"/>
+                </IKContext>
                 <Row>
                     <Column className="titleCol">
                         <TitleBold> {title} </TitleBold>

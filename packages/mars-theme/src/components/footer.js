@@ -25,10 +25,10 @@ const Footer = ({ state }) => {
 
     return (
         <FooterSection>
-            <Column>
+            <Column key={1}>
                 <img className="logo" src={CBlogo} alt="Logotipo Collective Bean"/>
             </Column>
-            <Column as={"ul"}>
+            <Column as={"ul"} key={2}>
                 {items.map((item, i) => {
                   if (!item.child_items) {
                       return (
@@ -48,7 +48,7 @@ const Footer = ({ state }) => {
                                     <img src={arrowDown} width={12} style={{ marginLeft: '8px'}} />
                                 </div>
                             </li>
-                            <div id={`childMenuFooter-${item.ID}`} style={{display: 'none'}}>
+                            <div key={2} id={`childMenuFooter-${item.ID}`} style={{display: 'none'}}>
                                 {childItems.map((childItem, i) => 
                                     <li key={i}>
                                         <Link link={childItem.url}>
@@ -64,7 +64,7 @@ const Footer = ({ state }) => {
                 })}
 
             </Column>
-            <Column>
+            <Column key={3}>
                 <Row>
                     <Link link={"https://www.facebook.com/CollectiveBean"} target="_blank" rel="noopener noreferrer">
                         <img src={fb} />
@@ -73,7 +73,7 @@ const Footer = ({ state }) => {
                         <img src={ig} />
                     </Link>
                 </Row>
-            </Column>
+            </Column >
         </FooterSection>
     )
 } 

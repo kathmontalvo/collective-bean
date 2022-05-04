@@ -1,4 +1,5 @@
 import { connect } from "frontity";
+import { IKImage, IKContext } from 'imagekitio-react'
 import { BackgroundImage, Column, TextBody, TitleBold, TitleNormal, Wrapper, WrapperBanner, WrapperMessages } from "../../../styles/styles";
 
 const ModelPage = ({ state }) => {
@@ -28,7 +29,9 @@ const ModelPage = ({ state }) => {
     return(
         <>
             <Wrapper>
-                <BackgroundImage src={BG_IMG} alt="Fondo Model Page" />
+                <IKContext urlEndpoint="https://ik.imagekit.io/n5oedf70g6">
+                    <BackgroundImage as={IKImage} src={BG_IMG} alt="Fondo principal"/>
+                </IKContext>
                 <WrapperBanner>
                     <TitleBold>{TITLE}</TitleBold>
                     <TextBody style={{ color: '#FFFFFF'}}>
