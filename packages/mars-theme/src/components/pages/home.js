@@ -2,7 +2,6 @@ import { connect } from "frontity";
 import Link from "../link";
 import { Wrapper, WrapperWelcome, BackgroundImage, MainButton, TitleNormal, TitleBold, WrapperModel, WrapperModelTop, TextBody, WrapperModelBottom, Subtitle, ModelList, ShadowImage, WrapperDiscover, WrapperBeans, BeanCard, ButtonSecondary } from "../../styles/styles";
 import arrowRight from '../../images/arrow-right.png';
-import { IKImage, IKContext } from 'imagekitio-react'
 
 const Home = ({ state }) => {
 
@@ -24,9 +23,7 @@ const Home = ({ state }) => {
     return(
         <>
             <Wrapper>
-                <IKContext urlEndpoint="https://ik.imagekit.io/n5oedf70g6">
-                    <BackgroundImage as={IKImage} src={WELCOME_IMG} className="welcome" alt="Fondo principal Collective Bean"/>
-                </IKContext>
+                <BackgroundImage src={WELCOME_IMG} className="welcome" alt="Fondo principal Collective Bean"/>
                 <WrapperWelcome>
                     <h1>{WELCOME_TITLE_1}</h1>
                     <h2>{WELCOME_SUBTITLE_1}</h2>

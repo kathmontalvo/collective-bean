@@ -7,7 +7,6 @@ import CafeMicrolotCircle from "../../../images/cafe-icon-circle.svg"
 import CafeComunalCircle from "../../../images/cerro-icon-circle.svg"
 import CacaoMicrolotCircle from "../../../images/cacao-icon-circle.svg"
 import CacaoComunalCircle from "../../../images/valle-icon-circle.svg"
-import { IKImage, IKContext } from 'imagekitio-react'
 
 const BeanPlace = ( { state, actions } ) => {
     const data = state.source.get(state.router.link);
@@ -64,9 +63,7 @@ const BeanPlace = ( { state, actions } ) => {
     return (
         <>
             <WrapperBeanPlace>
-                <IKContext urlEndpoint="https://ik.imagekit.io/n5oedf70g6">
-                    <BackgroundImage as={IKImage} src={bgImgSrc} alt="Fondo principal"/>
-                </IKContext>
+                <BackgroundImage src={bgImgSrc} alt="Fondo principal"/>
                 <Row>
                     <Column className="titleCol">
                         <TitleBold> {title} </TitleBold>

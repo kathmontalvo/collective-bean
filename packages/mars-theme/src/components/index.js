@@ -102,7 +102,7 @@ const HeadContainer = styled.div`
   background: rgb(18,52,15);
   background: linear-gradient(180deg, #162216 6.77%, rgba(22, 34, 22, 0) 100%);
   background-blend-mode: hard-light;
-  &.contact, &.our-model {
+  &.contact, &.our-model, &.resources {
     background: #162216;
   }
 `;

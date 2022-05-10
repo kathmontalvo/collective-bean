@@ -1,6 +1,6 @@
-import { connect } from "frontity";
-import { IKImage, IKContext } from 'imagekitio-react'
+import { connect, styled } from "frontity";
 import { BackgroundImage, Column, TextBody, TitleBold, TitleNormal, Wrapper, WrapperBanner, WrapperMessages } from "../../../styles/styles";
+import ResourceCard from "./resource-card";
 
 const ModelPage = ({ state }) => {
     const data = state.source.get(state.router.link);
@@ -11,27 +11,29 @@ const ModelPage = ({ state }) => {
 
     const {
         TITLE, SUBTITLE, BG_IMG,
-    //     MSG_1_TITLE, MSG_1_TEXT, MSG_1_IMG,
-    //     MSG_2_TITLE, MSG_2_TEXT, MSG_2_IMG,
-    //     MSG_3_TITLE, MSG_3_TEXT, MSG_3_IMG,
-    //     MSG_4_TITLE, MSG_4_TEXT, MSG_4_IMG,
+        RESOURCE_1_TITLE, RESOURCE_1_DESCRIPTION, RESOURCE_1_URL, RESOURCE_1_IMG,
+        RESOURCE_2_TITLE, RESOURCE_2_DESCRIPTION, RESOURCE_2_URL, RESOURCE_2_IMG,
+        RESOURCE_3_TITLE, RESOURCE_3_DESCRIPTION, RESOURCE_3_URL, RESOURCE_3_IMG,
+        RESOURCE_4_TITLE, RESOURCE_4_DESCRIPTION, RESOURCE_4_URL, RESOURCE_4_IMG,
+        RESOURCE_5_TITLE, RESOURCE_5_DESCRIPTION, RESOURCE_5_URL, RESOURCE_5_IMG,
+        RESOURCE_6_TITLE, RESOURCE_6_DESCRIPTION, RESOURCE_6_URL, RESOURCE_6_IMG,
     } = acf;
 
-    // const messages = [
-    //     {title: MSG_1_TITLE, text: MSG_1_TEXT.split('\r\n\r\n'), img: MSG_1_IMG},
-    //     {title: MSG_2_TITLE, text: MSG_2_TEXT.split('\r\n\r\n'), img: MSG_2_IMG},
-    //     {title: MSG_3_TITLE, text: MSG_3_TEXT.split('\r\n\r\n'), img: MSG_3_IMG},
-    //     {title: MSG_4_TITLE, text: MSG_4_TEXT.split('\r\n\r\n'), img: MSG_4_IMG},
-    // ]
+    const resources = [
+        {title: RESOURCE_1_TITLE, description: RESOURCE_1_DESCRIPTION.split('\r\n\r\n'), url: RESOURCE_1_URL, img: RESOURCE_1_IMG},
+        {title: RESOURCE_2_TITLE, description: RESOURCE_2_DESCRIPTION.split('\r\n\r\n'), url: RESOURCE_2_URL, img: RESOURCE_2_IMG},
+        {title: RESOURCE_3_TITLE, description: RESOURCE_3_DESCRIPTION.split('\r\n\r\n'), url: RESOURCE_3_URL, img: RESOURCE_3_IMG},
+        {title: RESOURCE_4_TITLE, description: RESOURCE_4_DESCRIPTION.split('\r\n\r\n'), url: RESOURCE_4_URL, img: RESOURCE_4_IMG},
+        {title: RESOURCE_5_TITLE, description: RESOURCE_5_DESCRIPTION.split('\r\n\r\n'), url: RESOURCE_5_URL, img: RESOURCE_5_IMG},
+        {title: RESOURCE_6_TITLE, description: RESOURCE_6_DESCRIPTION.split('\r\n\r\n'), url: RESOURCE_6_URL, img: RESOURCE_6_IMG},
+    ]
 
     // console.log(messages)
 
     return(
         <>
             <Wrapper>
-                <IKContext urlEndpoint="https://ik.imagekit.io/n5oedf70g6">
-                    <BackgroundImage as={IKImage} src={BG_IMG} alt="Fondo principal"/>
-                </IKContext>
+                <BackgroundImage src={BG_IMG} className="resource" alt="Fondo principal"/>
                 <WrapperBanner>
                     <TitleBold>{TITLE}</TitleBold>
                     <TextBody style={{ color: '#FFFFFF'}}>
@@ -39,6 +41,15 @@ const ModelPage = ({ state }) => {
                     </TextBody>
                 </WrapperBanner>
             </Wrapper>
+            <WrapperCards>
+                {
+                    resources.filter(el => el.title !== '').map((resource, i) => {
+                        return(
+                            <ResourceCard key={i} resource={resource} />
+                        )
+                    })
+                }
+            </WrapperCards>
 
         </>
     )
@@ -47,3 +58,18 @@ const ModelPage = ({ state }) => {
 }
 
 export default connect(ModelPage);
+
+const WrapperCards = styled.div`
+    display: flex;
+    flex-wrap: wrap; 
+    flex-direction: row;
+    padding: 64px 36px;
+    background-color: #EBEBEB;
+    justify-content: space-between;
+    @media screen and (min-width: 768px) {
+        padding: 48px 80px;
+    }
+    @media screen and (min-width: 1200px) {
+        padding: 100px 120px;
+    }
+`

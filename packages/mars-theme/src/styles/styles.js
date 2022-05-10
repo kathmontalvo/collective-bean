@@ -115,6 +115,9 @@ export const BackgroundImage = styled.img`
     &.welcome {
         height: fit-content;
     }
+    &.resource {
+        height: 90vh;
+    }
 `
 
 export const fadeAnimation = keyframes`
