@@ -8,8 +8,11 @@ import fbIcon from "../../../images/fb.svg";
 import igIcon from "../../../images/ig.svg";
 import whatsappIcon from "../../../images/whatsapp.svg";
 import bgThunder from "../../../images/bg-thunder.png";
+import bgLight from "../../../images/bg-light.png";
+import bgDesktop from "../../../images/desacata-bg-desktop.png";
+import bgMobile from "../../../images/desacata-bg-mobile.png";
 import Link from "../../link";
-import { Column, fadeAnimation, FooterSection, Row } from "../../../styles/styles";
+import { Column, fadeAnimation, FooterSection, Row, TextBody } from "../../../styles/styles";
 
 
 const Desacata = ({ state }) => {
@@ -22,6 +25,7 @@ const Desacata = ({ state }) => {
 
     const {
         TITLE, SUBTITLE, IMG_1, IMG_2,
+        MSG_TITLE, MSG_TEXT, MSG_BOLD,
         CAFE_1_TITLE, CAFE_1_IMG, CAFE_2_TITLE, CAFE_2_IMG, CAFE_3_TITLE, CAFE_3_IMG, CAFE_4_TITLE, CAFE_4_IMG, CAFE_5_TITLE, CAFE_5_IMG, CAFE_6_TITLE, CAFE_6_IMG, 
         CACAO_1_TITLE, CACAO_1_IMG, CACAO_2_TITLE, CACAO_2_IMG, CACAO_3_TITLE, CACAO_3_IMG, CACAO_4_TITLE, CACAO_4_IMG, CACAO_5_TITLE, CACAO_5_IMG, CACAO_6_TITLE, CACAO_6_IMG, 
         FB_URL, IG_URL
@@ -82,6 +86,11 @@ const Desacata = ({ state }) => {
             <Float href={whatsappRedirect} target="_blank" rel="noopener noreferrer" className="float">
                 <img className="my-float" src={whatsappIcon} alt="Icono de Whatsapp" />
             </Float>
+            <MsgSection>
+                <h3>{MSG_TITLE}</h3>
+                <TextBody dangerouslySetInnerHTML={{ __html: MSG_TEXT }}></TextBody>
+                <TextBody>{MSG_BOLD}</TextBody>
+            </MsgSection>
             <ProductSection>
                 <div className="product-title">
                     <h3>{coffeeProducts.title}</h3>
@@ -90,7 +99,9 @@ const Desacata = ({ state }) => {
                     {
                         coffeeProducts.products.filter((el) => el.title !== '').map((prod, i) => 
                             <CardProduct key={i}>
-                                <img src={prod.img} alt={prod.title} />
+                                <Link link={`${whatsappProductRedirect}:+cafe+-+${prod.title}`} target="_blank" rel="noopener noreferrer">
+                                    <img src={prod.img} alt={prod.title} />
+                                </Link>
                                 <Link link={`${whatsappProductRedirect}:+cafe+-+${prod.title}`} target="_blank" rel="noopener noreferrer">
                                     {prod.title}
                                 </Link>
@@ -108,7 +119,9 @@ const Desacata = ({ state }) => {
                     {
                         cacaoProducts.products.filter((el) => el.title !== '').map((prod, i) => 
                             <CardProduct key={i}>
-                                <img src={prod.img} alt={prod.title} />
+                                <Link link={`${whatsappProductRedirect}:+chocolate+-+${prod.title}`} target="_blank" rel="noopener noreferrer">
+                                    <img src={prod.img} alt={prod.title} />
+                                </Link>
                                 <Link link={`${whatsappProductRedirect}:+chocolate+-+${prod.title}`} target="_blank" rel="noopener noreferrer">
                                     {prod.title}
                                 </Link>
@@ -168,7 +181,7 @@ const shrinkSmall = keyframes`
 
 const Main = styled.section`
     width: auto;
-    height: 75vh;
+    height: fit-content;
     padding: 48px 36px;
     background: linear-gradient(
         to right,
@@ -197,9 +210,8 @@ const Main = styled.section`
         }
     }
     section.main-banner {
-        background-color: white;
-        background-image: url(${bgThunder});
-        background-size: contain;
+        background-image: url(${bgMobile});
+        background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
         display: flex;
@@ -240,7 +252,6 @@ const Main = styled.section`
 
     @media screen and (min-width: 768px) {
         padding: 48px 80px;
-        height: 65vh;
 
         nav {
             .img.title {
@@ -257,6 +268,8 @@ const Main = styled.section`
             }
         }
         section.main-banner {
+            background-image: url(${bgDesktop});   
+            background-size: contain;
             .text {
                 width: 60%;
                 padding: 48px 24px 48px 48px;
@@ -272,6 +285,9 @@ const Main = styled.section`
                 a {
                     font-size: 24px;
                     padding: 16px 48px;
+                    &:hover{
+                        
+                    }
                 }
             }
             .imgs {
@@ -284,7 +300,6 @@ const Main = styled.section`
     }
     @media screen and (min-width: 1200px) {
         padding: 48px 120px;
-        height: 80vh;
 
         nav {
             .img.title {
@@ -321,11 +336,46 @@ const Float = styled(Link)`
     }
 `
 
+const MsgSection = styled.section`
+    font-family: 'Courier Prime', 'serif';
+    text-align: center;
+    padding: 48px 36px;
+    background-image: url(${bgLight});
+    background-position: center;
+    background-size: cover;
+    h3 {
+        font-weight: 400;
+        font-size: 36px;
+        margin: 0;
+    }
+    ${TextBody} {
+        font-family: 'Courier Prime', 'serif';
+        margin-top: 0;
+    }
+    @media screen and (min-width: 768px) {
+        padding: 80px 200px;
+        margin: 80px 80px;
+        h3 {
+            font-size: 70px;
+        }
+    }
+    @media screen and (min-width: 1200px) {
+        padding: 64px 200px;
+        margin: 64px 120px;
+
+        h3 {
+            font-size: 70px;
+        }
+    }
+
+`
+
+
 const ProductSection = styled.section`
     font-family: 'Courier Prime', 'serif';
 
     .product-title {
-        background-color: #FFFFFF;
+        background-color: #F9F9F9;
         background-image: url(${bgThunder});
         background-size: cover;
         background-position: center;
@@ -367,6 +417,10 @@ const CardProduct = styled.div`
     margin-bottom: 24px;
     img {
         width: 95%;
+        &:hover{
+            transition: transform 0.2s linear 0.05s;
+            transform: scale(1.02);
+        }
     }
     a {
         width: 95%;
@@ -374,6 +428,9 @@ const CardProduct = styled.div`
         text-align: center;
         font-size: 24px;
         display: block;
+        &:hover{
+            transition: color 0.2s ease-in-out 0.01s;
+        }
     }
     @media screen and (min-width: 768px) {
         width: 33%;

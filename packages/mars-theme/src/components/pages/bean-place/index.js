@@ -12,7 +12,7 @@ const BeanPlace = ( { state, actions } ) => {
     const data = state.source.get(state.router.link);
     const post = state.source[data.type][data.id];
     console.log('post---->', post)
-    // 16-> microlot 17 -> comunal
+    // 19-> microlot 18 -> comunal
     const title = post.title.rendered
     const acf = post.acf;
     const beanType = post.type;
@@ -32,7 +32,7 @@ const BeanPlace = ( { state, actions } ) => {
 
     const description = beanType === 'coffee-bean' ? acf.COFFE_DESCRIPTION : acf.CACAO_DESCRIPTION;
     const bgImgSrc = beanType === 'coffee-bean' ? acf.COFFE_BG_IMG : acf.CACAO_BG_IMG;
-
+    console.log(microlotImg, comunalImg, typeof loteType,  Object.values(loteType));
     const comunalCoffeeTexts = [
         'Traceable region/area',
         'High quality consistency',
@@ -72,10 +72,10 @@ const BeanPlace = ( { state, actions } ) => {
                     </Column>
                     <Column className="cardCol">
                         {
-                            loteType.sort().map(lote => {
+                            Object.values(loteType).sort().map(lote => {
                                 return(
                                     <>
-                                        <BeanCard title={title} img={lote === 16 ? microlotImg : comunalImg} loteType={lote === 16 ? 'Microlots' : 'Comunales'} beanType={beanType} />
+                                        <BeanCard title={title} img={lote === 19 ? microlotImg : comunalImg} loteType={lote === 19 ? 'Microlots' : 'Comunales'} beanType={beanType} />
                                     </>
                                 )
                             })

@@ -24,7 +24,7 @@ const settings = {
       "name": "@frontity/wp-source",
       "state": {
         "source": {
-          "url": "https://collectivebean.com/",
+          "url": "https://wordpress.collectivebean.com/",
           "postTypes": [
             {
               type: "coffee-bean",

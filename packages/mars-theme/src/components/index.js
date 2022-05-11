@@ -28,6 +28,7 @@ import Contact from "./pages/contact";
 const Theme = ({ state }) => {
   // Get information about the current URL.
   const data = state.source.get(state.router.link);
+  console.log(data.link);
   return (
     <>
       {/* Add some metatags to the <head> of the HTML. */}
@@ -62,7 +63,7 @@ const Theme = ({ state }) => {
         <Switch>
           <Loading when={data.isFetching} />
           <ComingSoon when={data.link == "/"}/>
-          <Home when={data.id == 150} data={data} />
+          <Home when={data.link == "/home/"} data={data} />
           <ModelPage when={data.link == "/our-model/"} />
           <Resources when={data.link == "/resources/"} />
           <Desacata when={data.link == "/desacata/"} />

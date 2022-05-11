@@ -7,6 +7,7 @@ const Home = ({ state }) => {
 
     const data = state.source.get(state.router.link);
     const postInfo = state.source[data.type][data.id];
+    console.log(data);
     const acf = postInfo.acf
 
     const { 
