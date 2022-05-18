@@ -1,5 +1,6 @@
 import { connect, styled } from "frontity";
 import Link from "./link";
+import arrowDown from "../images/icon-arrow-down.svg"
 
 /**
  * Navigation Component
@@ -25,6 +26,8 @@ const Nav = ({ state }) => {
     el.style.left = getOffset(parentEl).left + "px";
   }
 
+  console.log('NAV', items);
+
   const hideChildren = (id) => {
     const el = document.getElementById(`childMenu-${id}`)
     el.style.display = "none"
@@ -42,26 +45,30 @@ const Nav = ({ state }) => {
           return (
             <NavItem key={`navItem-${item.ID}`}>
               {/* If link url is the current page, add `aria-current` for a11y */}
-              <Link link={item.url} aria-current={isCurrentPage ? "page" : undefined}>
+              <Link link={`/${(state.theme.lang === 'en' || item.slug == 'es') ? '' : 'es/'}${item.slug == 'home' ? '' : item.slug}`} aria-current={isCurrentPage ? "page" : undefined}>
                 {item.title}
               </Link>
             </NavItem>
           );
         } else {
           const childItems = item.child_items;
+
           return(
             <NavItemWithChild key={`navItemWithChild-${item.ID}`} id={`navItemWithChild-${item.ID}`} onMouseLeave={() => hideChildren(item.ID)}>
               <NavItem onMouseOver={(e) => showChildren(e, item.ID)}>
                 {/* If link url is the current page, add `aria-current` for a11y */}
-                <div className="childTitle" link={item.url} aria-current={isCurrentPage ? "page" : undefined}>
+                <div className="childTitle" aria-current={isCurrentPage ? "page" : undefined}>
                   {item.title}
+                  <img src={arrowDown} width={12} style={{ marginLeft: '8px'}} />
                 </div>
               </NavItem>
               <ChildMenu id={`childMenu-${item.ID}`} onMouseLeave={() => hideChildren(item.ID)}>
                 {childItems.map((childItem) => {
+                    const slug = childItem.slug ===  'coffee-bean' || childItem.slug === 'cocoa-bean' ? `${childItem.slug}s` : childItem.slug
+
                   return (
                     <NavItem key={childItem.ID}>
-                      <Link link={childItem.url}>
+                      <Link link={ childItem.slug ? `/${state.theme.lang === 'en' ? '' : 'es/'}${slug}` : childItem.url }>
                         {childItem.title}
                       </Link>
                   </NavItem>
@@ -93,13 +100,12 @@ const NavContainer = styled.nav`
 `;
 
 const NavItem = styled.div`
-  padding: 6px 0;
+  padding: 6px 16px;
   margin: 0 auto;
   color: #fff;
   font-size: 0.9em;
   box-sizing: border-box;
   text-align: center;
-  width: 110px; 
 
   & > a, .childTitle {
     display: inline-block;
@@ -123,7 +129,6 @@ const NavItem = styled.div`
 `;
 
 const NavItemWithChild = styled.div`
-  width: 140px; 
 `;
 
 const ChildMenu = styled.ul`

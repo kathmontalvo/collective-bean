@@ -1,4 +1,5 @@
 import { Global, css, connect, styled, Head } from "frontity";
+import { useEffect } from 'react';
 import Switch from "@frontity/components/switch";
 import Header from "./header";
 import List from "./list";
@@ -25,10 +26,29 @@ import Contact from "./pages/contact";
  *
  * @returns The top-level react component representing the theme.
  */
-const Theme = ({ state }) => {
+const Theme = ({ state, actions }) => {
   // Get information about the current URL.
   const data = state.source.get(state.router.link);
   console.log(data.link);
+  console.log(data);
+
+  useEffect(() => {
+
+    // if(data.link == '/') {
+    //   actions.router.set(`/home/`)
+    // } else if(data.link == '/es/') {
+    //   actions.router.set(`/es/home/`)
+    // }
+
+    const timer = setTimeout(() => {
+      if(!data.isReady) {
+        window.location.reload(false);
+      }
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, [data]);
+
+
   return (
     <>
       {/* Add some metatags to the <head> of the HTML. */}
@@ -49,9 +69,9 @@ const Theme = ({ state }) => {
 
       {/* Add the header of the site. */}
       {
-        (data.link !== '/' && data.link !== '/desacata/') &&     
+        !data.link.includes('desacata') &&     
         
-        <HeadContainer className={data.link.substring(1, data.link.length -1)}>
+        <HeadContainer className={ state.theme.lang == 'en' ? data.link.substring(1, data.link.length -1): data.link.substring(4, data.link.length -1) }>
           <Header />
         </HeadContainer>
 
@@ -62,19 +82,20 @@ const Theme = ({ state }) => {
       <Main>
         <Switch>
           <Loading when={data.isFetching} />
-          <ComingSoon when={data.link == "/"}/>
-          <Home when={data.link == "/home/"} data={data} />
-          <ModelPage when={data.link == "/our-model/"} />
-          <Resources when={data.link == "/resources/"} />
-          <Desacata when={data.link == "/desacata/"} />
-          <Beans when={data.link == "/coffee-beans/" || data.link == "/cocoa-beans/"} data={data} />
-          <Contact when={data.link == "/contact/"} />
+          {/* <ComingSoon when={data.isPostType}/> */}
+          {/* <ComingSoon when={data.link == "/" || data.link == "/es/"}/> */}
+          <Home when={data.isHome || data.link == '/es/'}/>
+          <ModelPage when={data.link == "/our-model/" || data.link == "/es/our-model/"} />
+          <Resources when={data.link == "/resources/" || data.link == "/es/resources/"} />
+          <Desacata when={data.link == "/desacata/" || data.link == "/es/desacata/"} />
+          <Beans when={data.link == "/coffee-beans/" || data.link == "/cocoa-beans/" || data.link == "/es/coffee-beans/" || data.link == "/es/cocoa-beans/"} data={data} />
+          <Contact when={data.link == "/contact/" || data.link == "/es/contact/"} />
           <BeanPlace when={data.isPostType} />
           <PageError when={data.isError} />
         </Switch>
       </Main>
       {
-        (data.link !== '/' && data.link !== '/desacata/') && <Footer></Footer>
+        !data.link.includes('desacata') && <Footer></Footer>
       }
 
     </>

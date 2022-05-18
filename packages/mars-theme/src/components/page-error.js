@@ -35,8 +35,8 @@ const Page404 = ({ state }) => {
 export default connect(Page404);
 
 const Container = styled.div`
-  width: 800px;
-  margin: 0;
+  width: 85%;
+  margin: 48px auto;
   padding: 24px;
   text-align: center;
 `;
@@ -46,7 +46,8 @@ const Title = styled.h1`
   margin-top: 24px;
   margin-bottom: 8px;
   color: rgba(12, 17, 43);
-  font-size: 4em;
+  font-size: 2em;
+  font-family: 'Abel', sans-serif;
 `;
 
 const Description = styled.div`

@@ -2,7 +2,7 @@ import { connect } from "frontity";
 import { ButtonSecondary, Column, Row, TitleBold, TitleNormal, WrapperBeanChart } from "../../../styles/styles";
 import Link from "../../link";
 
-const BeanChart = ({ title, acf, beanType }) => {
+const BeanChart = ({ title, acf, beanType, state }) => {
 
     const isCoffeeType = beanType === 'coffee-bean' 
 
@@ -108,7 +108,7 @@ const BeanChart = ({ title, acf, beanType }) => {
                             </tr>
                         </tbody>
                     </table>
-                    <ButtonSecondary as={Link} link='/contact'>Get it!</ButtonSecondary>
+                    <ButtonSecondary as={Link} link={state.theme.lang === 'en' ? '/contact/' : '/es/contact/'}>Get it!</ButtonSecondary>
                 </Column>
             </Row>
         </WrapperBeanChart>

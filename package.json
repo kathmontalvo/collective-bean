@@ -11,20 +11,22 @@
     "npm": ">=6.0.0"
   },
   "scripts": {
-    "dev": "frontity dev",
-    "build": "frontity build",
-    "serve": "frontity serve"
+    "dev": "npx frontity dev",
+    "build": "npx frontity build",
+    "serve": "npx frontity serve"
   },
   "prettier": {},
   "dependencies": {
     "@emailjs/browser": "^3.6.2",
     "@frontity/core": "^1.15.1",
+    "@frontity/head-tags": "^1.1.1",
     "@frontity/hooks": "^2.2.2",
     "@frontity/html2react": "^1.7.0",
     "@frontity/mars-theme": "./packages/mars-theme",
     "@frontity/tiny-router": "^1.4.4",
     "@frontity/wp-source": "^1.11.7",
     "frontity": "^1.17.2",
+    "global": "^4.4.0",
     "imagekitio-react": "^1.1.0"
   }
 }

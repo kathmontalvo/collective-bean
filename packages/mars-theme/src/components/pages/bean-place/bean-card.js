@@ -7,7 +7,7 @@ import comunalCacaoIcon from "../../../images/valle-icon.svg"
 import Link from "../../link";
 
 
-const BeanCard = ({img, loteType, beanType, title}) => {
+const BeanCard = ({img, loteType, beanType, title, state}) => {
 
     const microlotIcon = beanType === 'coffee-bean' ? microlotCafeIcon : microlotCacaoIcon;
     const comunalIcon = beanType === 'coffee-bean' ? comunalCafeIcon : comunalCacaoIcon;
@@ -27,7 +27,7 @@ const BeanCard = ({img, loteType, beanType, title}) => {
                 <Subtitle>
                     {title.toUpperCase()}
                 </Subtitle>
-                <ButtonSecondary as={Link} link='/contact'>Get it!</ButtonSecondary>
+                <ButtonSecondary as={Link} link={state.theme.lang === 'en' ? '/contact/' : '/es/contact/'}>Get it!</ButtonSecondary>
             </CardHover>
         </BeanCardWrapper>
     )

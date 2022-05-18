@@ -28,7 +28,7 @@ const Home = ({ state }) => {
                 <WrapperWelcome>
                     <h1>{WELCOME_TITLE_1}</h1>
                     <h2>{WELCOME_SUBTITLE_1}</h2>
-                    <MainButton as={Link} link='/contact'>{WELCOME_CTA}</MainButton>
+                    <MainButton as={Link} link={state.theme.lang === 'en' ? '/contact/' : '/es/contact/'}>{WELCOME_CTA}</MainButton>
                 </WrapperWelcome>
             </Wrapper>
             <Wrapper>
@@ -80,13 +80,13 @@ const Home = ({ state }) => {
                         <TextBody>{BEAN_1_SUBTITLE}</TextBody>
                         <img  src={BEAN_1_IMG_BN} alt="Grano de Café"/>
                         <TitleBold>{BEAN_1_TITLE}</TitleBold>
-                        <ButtonSecondary as={Link} link={"/coffee-beans"}>{BEAN_1_CTA}</ButtonSecondary>
+                        <ButtonSecondary as={Link} link={ state.theme.lang === 'en' ? '/coffee-beans/' : '/es/coffee-beans/'}>{BEAN_1_CTA}</ButtonSecondary>
                     </BeanCard>
                     <BeanCard className="second" onMouseOver={(e) => changeBgImage(e, BEAN_2_IMG_COLOR)} onMouseLeave={(e) => changeBgImage(e, BEAN_2_IMG_BN)}>
                         <TextBody>{BEAN_2_SUBTITLE}</TextBody>
                         <img  src={BEAN_2_IMG_BN} alt="Grano de Cacao"/>
                         <TitleBold>{BEAN_2_TITLE}</TitleBold>
-                        <ButtonSecondary as={Link} link={"/cocoa-beans"}>{BEAN_2_CTA}</ButtonSecondary>
+                        <ButtonSecondary as={Link} link={state.theme.lang === 'en' ? '/coffee-beans/' : '/es/cocoa-beans/'}>{BEAN_2_CTA}</ButtonSecondary>
                     </BeanCard>
                 </WrapperBeans>
             </Wrapper>

@@ -9,7 +9,7 @@ const Header = ({ state }) => {
   return (
     <>
       <Container>
-        <StyledLink link="/">
+        <StyledLink link={state.theme.lang === 'en' ? '/' : '/es' }>
           <Title src={cbLogoImg} alt="Isotipo Collective Bean" />
         </StyledLink>
         <MobileMenu />

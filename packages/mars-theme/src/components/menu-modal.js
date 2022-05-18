@@ -37,7 +37,7 @@ const MenuModal = ({ ...props }) => {
               <MenuLink
                 as={Link}
                 key={i}
-                link={item.url}
+                link={`/${(state.theme.lang === 'en' || item.slug == 'es') ? '' : 'es/'}${item.slug == 'home' ? '' : item.slug}`}
                 aria-current={state.router.link === item.url ? "page" : undefined}
               >
                 {item.title}
@@ -54,12 +54,14 @@ const MenuModal = ({ ...props }) => {
                 </MenuLink>
                 <ChildMenu id={`childMenuModal-${item.ID}`}>
                   {childItems.map((childItem, i) => {
+                    const slug = childItem.slug ===  'coffee-bean' || childItem.slug === 'cocoa-bean' ? `${childItem.slug}s` : childItem.slug
+
                     return (
                       <>
                         <MenuLink
                           as={Link}
                           key={i}
-                          link={childItem.url}
+                          link={ childItem.slug ? `/${state.theme.lang === 'en' ? '' : 'es/'}${slug}` : childItem.url }
                           aria-current={state.router.link === childItem.url ? "page" : undefined}
                         >
                           {childItem.title}

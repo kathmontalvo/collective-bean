@@ -3,6 +3,7 @@ import image from "@frontity/html2react/processors/image";
 import iframe from "@frontity/html2react/processors/iframe";
 import link from "@frontity/html2react/processors/link";
 import menuHandler from "./components/handlers/menu-handler"
+import window from 'global'
 
 const marsTheme = {
   name: "@frontity/mars-theme",

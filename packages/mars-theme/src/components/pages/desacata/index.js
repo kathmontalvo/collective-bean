@@ -133,7 +133,7 @@ const Desacata = ({ state }) => {
             </ProductSection>
             <FooterSection style={{backgroundColor: '#231F20'}}>
                 <Column>
-                    <Link link={'/home/'}>
+                    <Link link={state.theme.lang === 'en' ? '/' : '/es/'}>
                         <img className="logo" src={CBlogo} alt="Logotipo Collective Bean"/>
                     </Link>
                 </Column>

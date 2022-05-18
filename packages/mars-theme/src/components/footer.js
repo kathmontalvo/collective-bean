@@ -9,6 +9,7 @@ import ig from "../images/ig.svg"
 import arrowDown from "../images/icon-arrow-down.svg"
 
 const Footer = ({ state }) => {
+    console.log(state);
     const items = state.source.get(`/menu/${state.theme.menuUrl}/`).items;
     const [isToggle, setIsToggle] = useState(false)
 
@@ -17,49 +18,58 @@ const Footer = ({ state }) => {
         setIsToggle(!param)
 
         if (!isToggle) {
-          el.style.display = "block"
+            el.style.display = "block"
         } else {
-          el.style.display = "none"
+            el.style.display = "none"
         }
     }
+
+    console.log('lang', state);
 
     return (
         <FooterSection>
             <Column key={1}>
-                <img className="logo" src={CBlogo} alt="Logotipo Collective Bean"/>
+                <Link link={(state.theme.lang === 'en') ? '' : '/es/'}>
+                    <img className="logo" src={CBlogo} alt="Logotipo Collective Bean" />
+                </Link>
             </Column>
             <Column as={"ul"} key={2}>
                 {items.map((item, i) => {
-                  if (!item.child_items) {
-                      return (
-                          <li key={i}>
-                              <Link link={item.url}>
-                                  {item.title}
-                              </Link>
-                          </li>
-                      )
-                  } else {
-                      const childItems = item.child_items;
-                      return(
-                          <>
-                            <li key={item.ID}>
-                                <div onClick={() => clickToggle(isToggle, item.ID)}>
+                    if (!item.child_items) {
+                        return (
+                            <li key={i}>
+                                <Link link={`/${(state.theme.lang === 'en' || item.slug == 'es') ? '' : 'es/'}${item.slug == 'home' ? '' : item.slug}`}>
                                     {item.title}
-                                    <img src={arrowDown} width={12} style={{ marginLeft: '8px'}} />
-                                </div>
+                                </Link>
                             </li>
-                            <div key={2} id={`childMenuFooter-${item.ID}`} style={{display: 'none'}}>
-                                {childItems.map((childItem, i) => 
-                                    <li key={i}>
-                                        <Link link={childItem.url}>
-                                            {childItem.title}
-                                        </Link>
-                                    </li>
+                        )
+                    } else {
+                        const childItems = item.child_items;
+                        return (
+                            <>
+                                <li key={item.ID}>
+                                    <div onClick={() => clickToggle(isToggle, item.ID)}>
+                                        {item.title}
+                                        <img src={arrowDown} width={12} style={{ marginLeft: '8px' }} />
+                                    </div>
+                                </li>
+                                <div key={2} id={`childMenuFooter-${item.ID}`} style={{ display: 'none' }}>
+                                    {childItems.map((childItem, i) =>{
+                                        
+                                        const slug = childItem.slug ===  'coffee-bean' || childItem.slug === 'cocoa-bean' ? `${childItem.slug}s` : childItem.slug
+
+                                        return (
+                                            <li key={i}>
+                                                <Link link={ childItem.slug ? `/${state.theme.lang === 'en' ? '' : 'es/'}${slug}` : childItem.url }>
+                                                    {childItem.title}
+                                                </Link>
+                                            </li>
+                                        )}
                                     )}
-                            </div>
-                          </>
-                      )
-                  }
+                                </div>
+                            </>
+                        )
+                    }
 
                 })}
 
@@ -76,6 +86,6 @@ const Footer = ({ state }) => {
             </Column >
         </FooterSection>
     )
-} 
+}
 
 export default connect(Footer);

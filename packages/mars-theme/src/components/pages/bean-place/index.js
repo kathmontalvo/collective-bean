@@ -32,7 +32,7 @@ const BeanPlace = ( { state, actions } ) => {
 
     const description = beanType === 'coffee-bean' ? acf.COFFE_DESCRIPTION : acf.CACAO_DESCRIPTION;
     const bgImgSrc = beanType === 'coffee-bean' ? acf.COFFE_BG_IMG : acf.CACAO_BG_IMG;
-    console.log(microlotImg, comunalImg, typeof loteType,  Object.values(loteType));
+    // console.log(microlotImg, comunalImg, typeof loteType,  Object.values(loteType));
     const comunalCoffeeTexts = [
         'Traceable region/area',
         'High quality consistency',
@@ -75,7 +75,7 @@ const BeanPlace = ( { state, actions } ) => {
                             Object.values(loteType).sort().map(lote => {
                                 return(
                                     <>
-                                        <BeanCard title={title} img={lote === 19 ? microlotImg : comunalImg} loteType={lote === 19 ? 'Microlots' : 'Comunales'} beanType={beanType} />
+                                        <BeanCard state={state} title={title} img={lote === 19 ? microlotImg : comunalImg} loteType={lote === 19 ? 'Microlots' : 'Comunales'} beanType={beanType} />
                                     </>
                                 )
                             })
@@ -83,7 +83,7 @@ const BeanPlace = ( { state, actions } ) => {
                     </Column>
                 </Row>
             </WrapperBeanPlace>
-            <BeanChart title={title} acf={acf} beanType={beanType}/>
+            <BeanChart state={state} title={title} acf={acf} beanType={beanType}/>
             <WrapperRanges>
                 <TitleBold> Our Ranges </TitleBold>
                 <Row className="content">

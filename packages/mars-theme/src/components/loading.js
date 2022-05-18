@@ -33,8 +33,9 @@ const bar = (index) => css`
 `;
 
 const Container = styled.div`
-  width: 800px;
-  margin: 0;
+  width: 85%;
+  height: 90vh;
+  margin: 48px auto;
   padding: 24px;
   display: flex;
   justify-content: center;

@@ -35,7 +35,7 @@ const ModelPage = ({ state }) => {
                         {MODEL_TITLE_1}
                     </TitleNormal>
                     <TitleBold>{MODEL_TITLE_2}</TitleBold>
-                    <MainButton as={Link} link='/contact'>{BTN_CTA}</MainButton>
+                    <MainButton as={Link} link={state.theme.lang === 'en' ? '/contact/' : '/es/contact/'}>{BTN_CTA}</MainButton>
                 </WrapperBanner>
             </Wrapper>
             <WrapperMessages>
