@@ -3,6 +3,8 @@ import image from "@frontity/html2react/processors/image";
 import iframe from "@frontity/html2react/processors/iframe";
 import link from "@frontity/html2react/processors/link";
 import menuHandler from "./components/handlers/menu-handler"
+import EsCategoryHandler from "./components/handlers/category-handler-es"
+import EnCategoryHandler from "./components/handlers/category-handler-en"
 import window from 'global'
 
 const marsTheme = {
@@ -23,6 +25,7 @@ const marsTheme = {
       autoPrefetch: "in-view",
       menu: [],
       menuUrl: "all-pages",
+      menuUrlEs: "menu-espanol",
       isMobileMenuOpen: false,
       featured: {
         showOnList: false,
@@ -44,7 +47,10 @@ const marsTheme = {
         state.theme.isMobileMenuOpen = false;
       },
       beforeSSR: async ({state, actions}) => {
-        await actions.source.fetch(`/menu/${state.theme.menuUrl}/`)
+        await actions.source.fetch(`/menu/${state.theme.menuUrl}/`);
+        await actions.source.fetch(`/menu/${state.theme.menuUrlEs}/`);
+        await actions.source.fetch("/es/category/cafes");
+        await actions.source.fetch("/es/category/cacaos");
       }
     },
   },
@@ -58,7 +64,7 @@ const marsTheme = {
       processors: [image, iframe, link],
     },
     source: {
-      handlers: [menuHandler]
+      handlers: [menuHandler, EsCategoryHandler, EnCategoryHandler]
     }
   },
 };

@@ -72,4 +72,7 @@ const WrapperCards = styled.div`
     @media screen and (min-width: 1200px) {
         padding: 100px 120px;
     }
+    @media screen and (min-width: 1600px) {
+        padding: 120px 300px;
+    }
 `

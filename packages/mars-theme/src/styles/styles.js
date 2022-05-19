@@ -189,6 +189,9 @@ export const WrapperWelcome = styled.section`
             margin-top: 8px;
         }
     }
+    @media screen and (min-width: 1600px) {
+        padding: 80px 300px;
+    }
 `
 
 export const ShadowImage = styled.img`
@@ -210,6 +213,9 @@ export const WrapperModel = styled.section`
         padding: 120px;
         padding-top: 140px;
         padding-bottom: 200px;
+    }
+    @media screen and (min-width: 1600px) {
+        padding: 120px 300px;
     }
 
 `
@@ -305,6 +311,9 @@ export const WrapperDiscover = styled.div`
     @media screen and (min-width: 1200px) {
         padding: 180px 120px;
     }
+    @media screen and (min-width: 1600px) {
+        padding: 180px 300px;
+    }
     
 `
 
@@ -322,6 +331,9 @@ export const WrapperBeans = styled.section`
     }
     @media screen and (min-width: 1200px) {
         padding: 180px 120px;
+    }
+    @media screen and (min-width: 1600px) {
+        padding: 180px 300px;
     }
 `
 
@@ -481,11 +493,21 @@ export const FooterSection = styled.footer`
     @media screen and (min-width: 768px) {
         padding: 70px 80px;
         flex-direction: row;
+        align-items: flex-start;
+
+        ul {
+            margin: 0;
+            padding-top: 16px;
+        }
+
         ${Column} {
             width: 33%;
             img.logo {
                 width: 100%;
                 max-width: 300px;
+            }
+            &.social{
+                padding-top: 36px;
             }
             ${Row} { 
                 img {
@@ -496,6 +518,9 @@ export const FooterSection = styled.footer`
     }
     @media screen and (min-width: 1200px) {
         padding: 70px 150px;
+    }
+    @media screen and (min-width: 1600px) {
+        padding: 70px 300px;
     }
 
 `
@@ -516,6 +541,9 @@ export const WrapperBeansPage = styled(Wrapper)`
     }
     @media screen and (min-width: 1200px) {
         padding: 80px 120px;
+    }
+    @media screen and (min-width: 1600px) {
+        padding: 100px 300px;
     }
 `
 export const BackgroundMenu = styled.div`
@@ -595,6 +623,9 @@ export const WrapperBeanPlace = styled(Wrapper)`
     }
     @media screen and (min-width: 1200px) {
         padding: 24px 120px;
+    }
+    @media screen and (min-width: 1600px) {
+        padding: 36px 300px;
     }
 `
 
@@ -740,6 +771,7 @@ export const WrapperBeanChart = styled(Wrapper)`
                 margin-top: 16px;
                 padding: 18px 36px;
                 border-color: #D1C065;
+                color: #FFFFFF;
             }
         }
 
@@ -770,6 +802,16 @@ export const WrapperBeanChart = styled(Wrapper)`
                 padding: 48px;
                 width: 50%;
             }
+        }
+    }
+    @media screen and (min-width: 1600px) {
+        .title {
+            margin: 60px 300px;
+            margin-bottom: 0;
+        }
+        ${Row} {
+            margin: 60px 300px;
+            margin-top: 0;
         }
     }
 `
@@ -855,6 +897,9 @@ export const WrapperRanges = styled(Wrapper)`
             }
         }
     }
+    @media screen and (min-width: 1600px) {
+        padding: 120px 300px;
+    }
 `
 // Model
 
@@ -874,6 +919,7 @@ export const WrapperBanner = styled.section`
     }
     ${MainButton} {
         padding: 12px 24px;
+        color: #FFFFFF;
     }
 
     @media screen and (min-width: 768px) {
@@ -895,6 +941,9 @@ export const WrapperBanner = styled.section`
         ${TitleBold} {
             margin: 24px auto 64px;
         }
+    }
+    @media screen and (min-width: 1600px) {
+        padding: 150px 300px;
     }
 `
 
@@ -986,6 +1035,11 @@ export const WrapperMessages = styled(Wrapper)`
             &:last-child {
                 background: #FFFFFF;
             }
+        }
+    }
+    @media screen and (min-width: 1600px) {
+        ${Row} {
+            padding: 100px 300px;
         }
     }
 `

@@ -10,9 +10,12 @@ import arrowDown from "../images/icon-arrow-down.svg"
  */
 const MenuModal = ({ ...props }) => {
   const { state } = useConnect();
-  const [isToggle, setIsToggle] = useState(false)
-  const items = state.source.get(`/menu/${state.theme.menuUrl}/`).items;
-  
+  const [isToggle, setIsToggle] = useState(false);
+
+  const isEnglish = !state.router.link.includes('/es/') ? true : false;
+  const menu = isEnglish ? state.theme.menuUrl : state.theme.menuUrlEs;
+  const items = state.source.get(`/menu/${menu}/`).items;
+
   const isThereLinks = items?.length > 0;
 
   const clickToggle = (param, id) => {
@@ -37,7 +40,7 @@ const MenuModal = ({ ...props }) => {
               <MenuLink
                 as={Link}
                 key={i}
-                link={`/${(state.theme.lang === 'en' || item.slug == 'es') ? '' : 'es/'}${item.slug == 'home' ? '' : item.slug}`}
+                link={`/${isEnglish ? '' : 'es/'}${item.slug == 'home' ? '' : item.slug}`}
                 aria-current={state.router.link === item.url ? "page" : undefined}
               >
                 {item.title}
@@ -54,14 +57,15 @@ const MenuModal = ({ ...props }) => {
                 </MenuLink>
                 <ChildMenu id={`childMenuModal-${item.ID}`}>
                   {childItems.map((childItem, i) => {
-                    const slug = childItem.slug ===  'coffee-bean' || childItem.slug === 'cocoa-bean' ? `${childItem.slug}s` : childItem.slug
+                    
+                    const slug = childItem.object ===  'category' ? `category/${childItem.slug}` : childItem.slug
 
                     return (
                       <>
                         <MenuLink
                           as={Link}
                           key={i}
-                          link={ childItem.slug ? `/${state.theme.lang === 'en' ? '' : 'es/'}${slug}` : childItem.url }
+                          link={ childItem.slug ? `/${isEnglish ? '' : 'es/'}${slug}` : childItem.url }
                           aria-current={state.router.link === childItem.url ? "page" : undefined}
                         >
                           {childItem.title}

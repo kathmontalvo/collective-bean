@@ -48,6 +48,7 @@ const Theme = ({ state, actions }) => {
     return () => clearTimeout(timer);
   }, [data]);
 
+  const isEnglish = !state.router.link.includes('/es/') ? true : false;
 
   return (
     <>
@@ -71,7 +72,7 @@ const Theme = ({ state, actions }) => {
       {
         !data.link.includes('desacata') &&     
         
-        <HeadContainer className={ state.theme.lang == 'en' ? data.link.substring(1, data.link.length -1): data.link.substring(4, data.link.length -1) }>
+        <HeadContainer className={ isEnglish ? data.link.substring(1, data.link.length -1): data.link.substring(4, data.link.length -1) }>
           <Header />
         </HeadContainer>
 
@@ -84,12 +85,12 @@ const Theme = ({ state, actions }) => {
           <Loading when={data.isFetching} />
           {/* <ComingSoon when={data.isPostType}/> */}
           {/* <ComingSoon when={data.link == "/" || data.link == "/es/"}/> */}
-          <Home when={data.isHome || data.link == '/es/'}/>
-          <ModelPage when={data.link == "/our-model/" || data.link == "/es/our-model/"} />
-          <Resources when={data.link == "/resources/" || data.link == "/es/resources/"} />
+          <Home when={data.isHome || data.link == '/es/inicio/'}/>
+          <ModelPage when={data.link == "/our-model/" || data.link == "/es/nuestro-modelo/"} />
+          <Resources when={data.link == "/resources/" || data.link == "/es/recursos/"} />
           <Desacata when={data.link == "/desacata/" || data.link == "/es/desacata/"} />
-          <Beans when={data.link == "/coffee-beans/" || data.link == "/cocoa-beans/" || data.link == "/es/coffee-beans/" || data.link == "/es/cocoa-beans/"} data={data} />
-          <Contact when={data.link == "/contact/" || data.link == "/es/contact/"} />
+          <Beans when={data.link == "/category/cacao-beans/" || data.link == "/category/coffee-beans/" || data.link == "/es/category/cacaos/" || data.link == "/es/category/cafes/"} data={data} />
+          <Contact when={data.link == "/contact/" || data.link == "/es/contacto/"} />
           <BeanPlace when={data.isPostType} />
           <PageError when={data.isError} />
         </Switch>
@@ -124,7 +125,8 @@ const HeadContainer = styled.div`
   background: rgb(18,52,15);
   background: linear-gradient(180deg, #162216 6.77%, rgba(22, 34, 22, 0) 100%);
   background-blend-mode: hard-light;
-  &.contact, &.our-model, &.resources {
+  &.contact, &.our-model, &.resources,
+  &.contacto, &.nuestro-modelo, &.recursos {
     background: #162216;
   }
 `;

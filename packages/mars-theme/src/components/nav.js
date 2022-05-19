@@ -8,7 +8,11 @@ import arrowDown from "../images/icon-arrow-down.svg"
  * It renders the navigation links
  */
 const Nav = ({ state }) => {
-  const items = state.source.get(`/menu/${state.theme.menuUrl}/`).items;
+
+  console.log(state.router.link.includes('/es/'));
+  const isEnglish = !state.router.link.includes('/es/') ? true : false;
+  const menu = isEnglish ? state.theme.menuUrl : state.theme.menuUrlEs
+  const items = state.source.get(`/menu/${menu}/`).items;
 
   const getOffset = (el) => {
     const rect = el.getBoundingClientRect();
@@ -26,7 +30,7 @@ const Nav = ({ state }) => {
     el.style.left = getOffset(parentEl).left + "px";
   }
 
-  console.log('NAV', items);
+  console.log('NAV', state.source);
 
   const hideChildren = (id) => {
     const el = document.getElementById(`childMenu-${id}`)
@@ -38,6 +42,8 @@ const Nav = ({ state }) => {
       {items.map((item) => {
         // Check if the link matched the current page url
 
+        console.log('itemNAV', item);
+
         const data = state.source.get(state.router.link);
         const isCurrentPage = data.route === item.url;
 
@@ -45,7 +51,7 @@ const Nav = ({ state }) => {
           return (
             <NavItem key={`navItem-${item.ID}`}>
               {/* If link url is the current page, add `aria-current` for a11y */}
-              <Link link={`/${(state.theme.lang === 'en' || item.slug == 'es') ? '' : 'es/'}${item.slug == 'home' ? '' : item.slug}`} aria-current={isCurrentPage ? "page" : undefined}>
+              <Link link={`/${(isEnglish || item.slug == 'es') ? '' : 'es/'}${item.slug == 'home' ? '' : item.slug}`} aria-current={isCurrentPage ? "page" : undefined}>
                 {item.title}
               </Link>
             </NavItem>
@@ -64,11 +70,11 @@ const Nav = ({ state }) => {
               </NavItem>
               <ChildMenu id={`childMenu-${item.ID}`} onMouseLeave={() => hideChildren(item.ID)}>
                 {childItems.map((childItem) => {
-                    const slug = childItem.slug ===  'coffee-bean' || childItem.slug === 'cocoa-bean' ? `${childItem.slug}s` : childItem.slug
+                    const slug = childItem.object ===  'category' ? `category/${childItem.slug}` : childItem.slug
 
                   return (
                     <NavItem key={childItem.ID}>
-                      <Link link={ childItem.slug ? `/${state.theme.lang === 'en' ? '' : 'es/'}${slug}` : childItem.url }>
+                      <Link link={ childItem.slug ? `/${isEnglish ? '' : 'es/'}${slug}` : childItem.url }>
                         {childItem.title}
                       </Link>
                   </NavItem>

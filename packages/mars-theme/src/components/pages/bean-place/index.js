@@ -11,11 +11,15 @@ import CacaoComunalCircle from "../../../images/valle-icon-circle.svg"
 const BeanPlace = ( { state, actions } ) => {
     const data = state.source.get(state.router.link);
     const post = state.source[data.type][data.id];
+	const isCoffeeBeans = post.categories.find(el => el == 27 || el == 24);
+    // 27/24 -> cafes - 31/29 -> cacaos
+
     console.log('post---->', post)
+    console.log('cafe---->', isCoffeeBeans)
     // 19-> microlot 18 -> comunal
     const title = post.title.rendered
     const acf = post.acf;
-    const beanType = post.type;
+    const beanType = isCoffeeBeans ? 'coffee-bean' : 'cocoa-bean';
     const loteType = post.lote_type;
 
     useEffect(() => {

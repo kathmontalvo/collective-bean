@@ -10,7 +10,10 @@ import arrowDown from "../images/icon-arrow-down.svg"
 
 const Footer = ({ state }) => {
     console.log(state);
-    const items = state.source.get(`/menu/${state.theme.menuUrl}/`).items;
+    const isEnglish = !state.router.link.includes('/es/') ? true : false;
+    const menu = isEnglish ? state.theme.menuUrl : state.theme.menuUrlEs;
+    const items = state.source.get(`/menu/${menu}/`).items;
+
     const [isToggle, setIsToggle] = useState(false)
 
     const clickToggle = (param, id) => {
@@ -24,12 +27,10 @@ const Footer = ({ state }) => {
         }
     }
 
-    console.log('lang', state);
-
     return (
         <FooterSection>
             <Column key={1}>
-                <Link link={(state.theme.lang === 'en') ? '' : '/es/'}>
+                <Link link={isEnglish ? '' : '/es/inicio'}>
                     <img className="logo" src={CBlogo} alt="Logotipo Collective Bean" />
                 </Link>
             </Column>
@@ -38,7 +39,7 @@ const Footer = ({ state }) => {
                     if (!item.child_items) {
                         return (
                             <li key={i}>
-                                <Link link={`/${(state.theme.lang === 'en' || item.slug == 'es') ? '' : 'es/'}${item.slug == 'home' ? '' : item.slug}`}>
+                                <Link link={`/${isEnglish ? '' : 'es/'}${item.slug == 'home' ? '' : item.slug}`}>
                                     {item.title}
                                 </Link>
                             </li>
@@ -56,11 +57,11 @@ const Footer = ({ state }) => {
                                 <div key={2} id={`childMenuFooter-${item.ID}`} style={{ display: 'none' }}>
                                     {childItems.map((childItem, i) =>{
                                         
-                                        const slug = childItem.slug ===  'coffee-bean' || childItem.slug === 'cocoa-bean' ? `${childItem.slug}s` : childItem.slug
+                                        const slug = childItem.object ===  'category' ? `category/${childItem.slug}` : childItem.slug
 
                                         return (
                                             <li key={i}>
-                                                <Link link={ childItem.slug ? `/${state.theme.lang === 'en' ? '' : 'es/'}${slug}` : childItem.url }>
+                                                <Link link={ childItem.slug ? `/${isEnglish ? '' : 'es/'}${slug}` : childItem.url }>
                                                     {childItem.title}
                                                 </Link>
                                             </li>
@@ -74,7 +75,7 @@ const Footer = ({ state }) => {
                 })}
 
             </Column>
-            <Column key={3}>
+            <Column key={3} className="social">
                 <Row>
                     <Link link={"https://www.facebook.com/CollectiveBean"} target="_blank" rel="noopener noreferrer">
                         <img src={fb} />

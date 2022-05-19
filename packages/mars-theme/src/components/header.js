@@ -6,10 +6,12 @@ import cbLogoImg from "../images/cb_isotipo_white.png"
 
 const Header = ({ state }) => {
 
+  const isEnglish = !state.router.link.includes('/es/') ? true : false;
+
   return (
     <>
       <Container>
-        <StyledLink link={state.theme.lang === 'en' ? '/' : '/es' }>
+        <StyledLink link={isEnglish ? '/' : '/es/inicio' }>
           <Title src={cbLogoImg} alt="Isotipo Collective Bean" />
         </StyledLink>
         <MobileMenu />
@@ -36,6 +38,9 @@ const Container = styled.div`
   }
   @media screen and (min-width: 1200px) {
     padding: 12px 120px;
+  }
+  @media screen and (min-width: 1600px) {
+    padding: 16px 300px;
   }
 
 `;

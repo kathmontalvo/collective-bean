@@ -18,6 +18,8 @@ import { Column, fadeAnimation, FooterSection, Row, TextBody } from "../../../st
 const Desacata = ({ state }) => {
     const data = state.source.get(state.router.link);
     const post = state.source[data.type][data.id];
+    const isEnglish = !state.router.link.includes('/es/') ? true : false;
+
     console.log('post---->', post)
 
     const title = post.title.rendered;
@@ -133,14 +135,14 @@ const Desacata = ({ state }) => {
             </ProductSection>
             <FooterSection style={{backgroundColor: '#231F20'}}>
                 <Column>
-                    <Link link={state.theme.lang === 'en' ? '/' : '/es/'}>
+                    <Link link={isEnglish ? '/' : '/es/inicio'}>
                         <img className="logo" src={CBlogo} alt="Logotipo Collective Bean"/>
                     </Link>
                 </Column>
                 <Column style={{marginTop: '36px', marginBottom: '48px'}}>
                     <img className="logo" src={desacataLogoWhite} alt="Logotipo Desacata"/>
                 </Column>
-                <Column>
+                <Column className="social">
                     <Row>
                         <Link link={FB_URL} target="_blank" rel="noopener noreferrer">
                             <img src={fbIcon} alt="Fb Icon" />
@@ -313,6 +315,9 @@ const Main = styled.section`
             }
         }
     }
+    @media screen and (min-width: 1600px) {
+        padding: 64px 300px;
+    }
 `
 
 const Float = styled(Link)`
@@ -408,7 +413,16 @@ const ProductSection = styled.section`
         }
 
     }
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: 1600px) {
+        .product-title {
+            h3 {
+                padding: 120px 300px 12px 300px;
+            }
+        }
+        .products {
+            padding: 12px 280px 24px 300px;
+        
+        }
     }
 `
 

@@ -6,10 +6,13 @@ import CoffeeMap from "./beans-maps/coffeeMap";
 
 const Beans = ({ state, actions }) => {
   const data = state.source.get(state.router.link);
-	const isCoffeeBeans = data.isCoffeeBeanArchive
-  const beanType = data.type;
+	const isCoffeeBeans = data.link.includes('cafes') || data.link.includes('coffee');
+  const isEnglish = !state.router.link.includes('/es/') ? true : false;
 
 	console.log(data, isCoffeeBeans)
+
+  const titleEn = `Our ${ isCoffeeBeans ? 'Coffees' : 'Cacaos' }`
+  const titleEs = `Nuestros ${ isCoffeeBeans ? 'cafés' : 'cacaos' }`
 
 	const hoverPoint = (e, className, isShow) => {
 
@@ -31,15 +34,17 @@ const Beans = ({ state, actions }) => {
 	}
 
   const goToPage = (param) => {
-    console.log(param)
-    actions.router.set(`/${beanType}/${param}/`)
+    const slug = isEnglish ? param : `${param}-es`; 
+    console.log(param, isEnglish, slug)
+
+    actions.router.set(isEnglish ? `/${slug}` : `/es/${slug}`)
   }
 
 	return (
 		<WrapperBeansPage>
       <BackgroundMenu></BackgroundMenu>
 			<TitleBold>
-				Our { isCoffeeBeans ? 'Coffees' : 'Cacaos' }
+			 { isEnglish ? titleEn : titleEs }
 			</TitleBold>
       { isCoffeeBeans ? <CoffeeMap hoverPoint={hoverPoint} goToPage={goToPage} /> : <CacaoMap hoverPoint={hoverPoint} goToPage={goToPage} /> }
 		</WrapperBeansPage>

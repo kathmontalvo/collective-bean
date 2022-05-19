@@ -5,6 +5,7 @@ import Link from "../../link";
 const BeanChart = ({ title, acf, beanType, state }) => {
 
     const isCoffeeType = beanType === 'coffee-bean' 
+    const isEnglish = !state.router.link.includes('/es/') ? true : false;
 
     const { 
         COFFE_CARD_PROFILES, 
@@ -108,7 +109,7 @@ const BeanChart = ({ title, acf, beanType, state }) => {
                             </tr>
                         </tbody>
                     </table>
-                    <ButtonSecondary as={Link} link={state.theme.lang === 'en' ? '/contact/' : '/es/contact/'}>Get it!</ButtonSecondary>
+                    <ButtonSecondary as={Link} link={isEnglish ? '/contact/' : '/es/contacto/'}>Get it!</ButtonSecondary>
                 </Column>
             </Row>
         </WrapperBeanChart>
