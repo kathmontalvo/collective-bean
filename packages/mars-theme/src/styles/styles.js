@@ -904,7 +904,7 @@ export const WrapperRanges = styled(Wrapper)`
 // Model
 
 export const WrapperBanner = styled.section`
-    padding: 64px 36px 90px;
+    padding: 64px 36px 48px;
     text-align: center;
     animation: 0.5s ${fadeAnimation} 0.3s backwards;
 
@@ -968,7 +968,7 @@ export const WrapperMessages = styled(Wrapper)`
                 width: 100%;
                 height: 350px;
                 object-fit: cover;
-                object-position: 10% 20%;
+                object-position: 50% 20%;
             }
         }
     }

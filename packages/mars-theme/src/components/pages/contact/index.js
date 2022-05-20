@@ -10,11 +10,13 @@ const Contact = ({ state }) => {
     const data = state.source.get(state.router.link);
     const post = state.source[data.type][data.id];
     console.log('post---->', post)
+    const isEnglish = !state.router.link.includes('/es/') ? true : false;
 
     const acf = post.acf;
 
     const {
-        TITLE, SUBTITLE, BG_IMG, 
+        TITLE, SUBTITLE, BG_IMG,
+        RESPONSE_MESSAGE, ERROR_MESSAGE,
         SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY
     } = acf;
 
@@ -52,6 +54,26 @@ const Contact = ({ state }) => {
         });
     }
 
+    const formEn = {
+        name: 'Name',
+        lastname: 'Last name',
+        email: 'Email',
+        subject: 'Subject',
+        message: 'Message',
+        btn: 'Send'
+    }
+
+    const formEs = {
+        name: 'Nombre',
+        lastname: 'Apellido',
+        email: 'Email',
+        subject: 'Asunto',
+        message: 'Mensaje',
+        btn: 'Enviar'
+    }
+
+    const currentForm = isEnglish ? formEn : formEs
+
     return(
         <WrapperContact>
             <img className="bg" src={BG_IMG} />
@@ -60,13 +82,13 @@ const Contact = ({ state }) => {
                 { successMsg ? 
                     <WrapperMessage success>
                         <img className="icon" src={successIcon} />
-                        Thank you for contacting us! We've received your message and will reply to you as soon as possible.
+                        {RESPONSE_MESSAGE}
                      </WrapperMessage> 
                     : ''}
                 { errorMsg ?
                     <WrapperMessage>
                         <img src={errorIcon} />
-                        I'm sorry. There was an error trying to send your message. Plase try again later. 
+                        {ERROR_MESSAGE}
                     </WrapperMessage> 
                     : ''}
                 
@@ -76,27 +98,27 @@ const Contact = ({ state }) => {
                     <div className="content">
 
                         <label>
-                            Name
+                            {currentForm.name}
                             <input type='text' name='firstName' required />
                         </label>
                         <label>
-                            Last Name
+                            {currentForm.lastname}
                             <input type='text' name='lastName' required/>
                         </label>
                         <label>
-                            Email
+                            {currentForm.email}
                             <input type='email' name='email' required/>
                         </label>
                         <label>
-                            Subject
+                            {currentForm.subject}
                             <input type='text' name='subject' required/>
                         </label>
                         <label>
-                            Message
+                            {currentForm.message}
                             <textarea rows={4} name='message' required/>
                         </label>
                     </div>
-                     <Button as='input' id="sendBtn" type='submit' value='Send' disabled={false}></Button>
+                     <Button as='input' id="sendBtn" type='submit' value={currentForm.btn} disabled={false}></Button>
                 </form>
             </section>
         </WrapperContact>
@@ -242,15 +264,3 @@ const WrapperMessage = styled.p`
     }
 
 `
-
-
-// .image {
-//     animation: spin 4s linear infinite;
-// }
-
-// @keyframes spin {
-//     100% {
-//         -webkit-transform: rotate(360deg);
-//         transform: rotate(360deg);
-//     }
-// }
