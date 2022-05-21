@@ -20,7 +20,6 @@ const Desacata = ({ state }) => {
     const post = state.source[data.type][data.id];
     const isEnglish = !state.router.link.includes('/es/') ? true : false;
 
-    console.log('post---->', post)
 
     const title = post.title.rendered;
     const acf = post.acf;

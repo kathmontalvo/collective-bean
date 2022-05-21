@@ -9,7 +9,6 @@ const Home = ({ state }) => {
     const postInfo = state.source[data.type][data.id];
     const isEnglish = !state.router.link.includes('/es/') ? true : false;
 
-    console.log(data);
     const acf = postInfo.acf
 
     const { 
@@ -38,7 +37,7 @@ const Home = ({ state }) => {
                     <WrapperModelTop>
                         <TitleNormal>{MODEL_MSG_1}</TitleNormal>
                         <TitleBold>{MODEL_MSG_2}</TitleBold>
-                        <TextBody>{MODEL_MSG_SMALL}</TextBody>
+                        <TextBody dangerouslySetInnerHTML={{ __html: MODEL_MSG_SMALL}}></TextBody>
                     </WrapperModelTop>
                     <WrapperModelBottom>
                         <section className="start">

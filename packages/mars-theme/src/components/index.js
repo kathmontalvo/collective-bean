@@ -26,26 +26,36 @@ import Contact from "./pages/contact";
  *
  * @returns The top-level react component representing the theme.
  */
-const Theme = ({ state, actions }) => {
+const Theme = ({ state }) => {
   // Get information about the current URL.
   const data = state.source.get(state.router.link);
-  console.log(data.link);
-  console.log(data);
 
   useEffect(() => {
 
-    // if(data.link == '/') {
-    //   actions.router.set(`/home/`)
-    // } else if(data.link == '/es/') {
-    //   actions.router.set(`/es/home/`)
-    // }
+
+    // setTimeout(() => {
+    //   if(data.link === '/es/recursos/') {
+    //     const post = state.source[data.type][data.id];
+    //     post.acf.RESOURCE_1_IMG.startsWith('https://collective') && window.location.reload(false);
+    //   }
+    // }, 100);
+
+    // setTimeout(() => {
+    //   if(data.link === '/es/nuestro-modelo/') {
+    //     const post = state.source[data.type][data.id];
+    //     post.acf.MODEL_BG_IMG.startsWith('https://collective') && window.location.reload(false);
+    //   }
+    // }, 100);
 
     const timer = setTimeout(() => {
       if(!data.isReady) {
         window.location.reload(false);
       }
-    }, 1500);
-    return () => clearTimeout(timer);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer)
+    };
   }, [data]);
 
   const isEnglish = !state.router.link.includes('/es/') ? true : false;
@@ -70,7 +80,7 @@ const Theme = ({ state, actions }) => {
 
       {/* Add the header of the site. */}
       {
-        !data.link.includes('desacata') &&     
+        data.link !== "/es/desacata/" &&     
         
         <HeadContainer className={ isEnglish ? data.link.substring(1, data.link.length -1): data.link.substring(4, data.link.length -1) }>
           <Header />
@@ -88,7 +98,7 @@ const Theme = ({ state, actions }) => {
           <Home when={data.isHome || data.link == '/es/inicio/'}/>
           <ModelPage when={data.link == "/our-model/" || data.link == "/es/nuestro-modelo/"} />
           <Resources when={data.link == "/resources/" || data.link == "/es/recursos/"} />
-          <Desacata when={data.link == "/desacata/" || data.link == "/es/desacata/"} />
+          <Desacata when={ data.link == "/es/desacata/"} />
           <Beans when={data.link == "/category/cacao-beans/" || data.link == "/category/coffee-beans/" || data.link == "/es/category/cacaos/" || data.link == "/es/category/cafes/"} data={data} />
           <Contact when={data.link == "/contact/" || data.link == "/es/contacto/"} />
           <BeanPlace when={data.isPostType} />
@@ -96,7 +106,7 @@ const Theme = ({ state, actions }) => {
         </Switch>
       </Main>
       {
-        !data.link.includes('desacata') && <Footer></Footer>
+        data.link !== "/es/desacata/" && <Footer></Footer>
       }
 
     </>

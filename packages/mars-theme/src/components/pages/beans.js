@@ -9,8 +9,6 @@ const Beans = ({ state, actions }) => {
 	const isCoffeeBeans = data.link.includes('cafes') || data.link.includes('coffee');
   const isEnglish = !state.router.link.includes('/es/') ? true : false;
 
-	console.log(data, isCoffeeBeans)
-
   const titleEn = `Our ${ isCoffeeBeans ? 'Coffees' : 'Cacaos' }`
   const titleEs = `Nuestros ${ isCoffeeBeans ? 'cafés' : 'cacaos' }`
 
@@ -35,8 +33,6 @@ const Beans = ({ state, actions }) => {
 
   const goToPage = (param) => {
     const slug = isEnglish ? param : `${param}-es`; 
-    console.log(param, isEnglish, slug)
-
     actions.router.set(isEnglish ? `/${slug}` : `/es/${slug}`)
   }
 

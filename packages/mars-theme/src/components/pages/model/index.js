@@ -9,7 +9,6 @@ const ModelPage = ({ state }) => {
     const post = state.source[data.type][data.id];
     const isEnglish = !state.router.link.includes('/es/') ? true : false;
 
-    console.log('post---->', post)
 
     const acf = post.acf;
 

@@ -5,11 +5,9 @@ import igIcon from "../../images/ig.svg";
 import Link from "../link";
 
 const ComingSoon = ({state}) => {
-	console.log(state)
 	const data = state.source.get(state.router.link);
     const post = state.source[data.type][data.id];
 
-	console.log(data, post);
 	const url = {
 		fb: 'https://www.facebook.com/CollectiveBean',
 		ig: 'https://www.instagram.com/collectivebean.peru/'

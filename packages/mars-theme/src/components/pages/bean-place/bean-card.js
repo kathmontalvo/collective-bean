@@ -7,7 +7,7 @@ import comunalCacaoIcon from "../../../images/valle-icon.svg"
 import Link from "../../link";
 
 
-const BeanCard = ({img, loteType, beanType, title, state}) => {
+const BeanCard = ({img, loteType, loteTitle, beanType, title, state}) => {
 
     const microlotIcon = beanType === 'coffee-bean' ? microlotCafeIcon : microlotCacaoIcon;
     const comunalIcon = beanType === 'coffee-bean' ? comunalCafeIcon : comunalCacaoIcon;
@@ -15,20 +15,20 @@ const BeanCard = ({img, loteType, beanType, title, state}) => {
 
     return(
         <BeanCardWrapper>
-            <CardVisible className={`${loteType.toLowerCase()} ${beanType}`}>
+            <CardVisible className={`${loteType} ${beanType}`}>
                 <img className="loteImg" src={img} />
-                <div className={`loteTxt ${loteType.toLowerCase()} ${beanType}`}>
+                <div className={`loteTxt ${loteType} ${beanType}`}>
                     <Subtitle>
-                        {loteType}
+                        {loteTitle}
                     </Subtitle>
                 </div>
             </CardVisible>
-            <CardHover className={`${loteType.toLowerCase()} ${beanType}`}>
-                <img src={loteType.toLowerCase() === 'comunales' ? comunalIcon : microlotIcon } />
+            <CardHover className={`${loteType} ${beanType}`}>
+                <img src={loteType === 'comunales' ? comunalIcon : microlotIcon } />
                 <Subtitle>
                     {title.toUpperCase()}
                 </Subtitle>
-                <ButtonSecondary as={Link} link={isEnglish ? '/contact/' : '/es/contacto/'}>Get it!</ButtonSecondary>
+                <ButtonSecondary as={Link} link={isEnglish ? '/contact/' : '/es/contacto/'}>{isEnglish ? 'Get it!' : '¡Lo quiero!'}</ButtonSecondary>
             </CardHover>
         </BeanCardWrapper>
     )

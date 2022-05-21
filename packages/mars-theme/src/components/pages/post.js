@@ -40,8 +40,6 @@ const Post = ({ state, actions, libraries }) => {
   const postType = data.type; // 'coffee-bean' o 'cocoa-bean'
   const bean = state.source[postType][data.id]
 
-  console.log(postType, bean)
-
   // const cocoaBean = state.source["cocoa-bean"][data.id]
 
   /**

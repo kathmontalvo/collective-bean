@@ -9,7 +9,6 @@ import arrowDown from "../images/icon-arrow-down.svg"
  */
 const Nav = ({ state }) => {
 
-  console.log(state.router.link.includes('/es/'));
   const isEnglish = !state.router.link.includes('/es/') ? true : false;
   const menu = isEnglish ? state.theme.menuUrl : state.theme.menuUrlEs
   const items = state.source.get(`/menu/${menu}/`).items;
@@ -30,7 +29,6 @@ const Nav = ({ state }) => {
     el.style.left = getOffset(parentEl).left + "px";
   }
 
-  console.log('NAV', state.source);
 
   const hideChildren = (id) => {
     const el = document.getElementById(`childMenu-${id}`)
@@ -41,9 +39,6 @@ const Nav = ({ state }) => {
     <NavContainer>
       {items.map((item) => {
         // Check if the link matched the current page url
-
-        console.log('itemNAV', item);
-
         const data = state.source.get(state.router.link);
         const isCurrentPage = data.route === item.url;
 

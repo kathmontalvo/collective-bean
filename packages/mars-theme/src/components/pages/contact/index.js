@@ -9,7 +9,6 @@ import errorIcon from "../../../images/error.svg"
 const Contact = ({ state }) => {
     const data = state.source.get(state.router.link);
     const post = state.source[data.type][data.id];
-    console.log('post---->', post)
     const isEnglish = !state.router.link.includes('/es/') ? true : false;
 
     const acf = post.acf;

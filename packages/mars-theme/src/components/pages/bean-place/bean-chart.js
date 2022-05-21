@@ -47,11 +47,41 @@ const BeanChart = ({ title, acf, beanType, state }) => {
     const TITLE_8 = isCoffeeType ? COFFE_CARD_CERTIFICATE : CACAO_CARD_CERTIFICATE;
     const TITLE_9 = isCoffeeType ? COFFE_CARD_VOLUME : CACAO_CARD_VOLUME;
 
+    const keyEn = {
+        val1: isCoffeeType ? 'Profile' : 'Fermentation',
+        val2: 'Altitude',
+        val2_1: 'masl',
+        val3: 'Varieties',
+        val4: isCoffeeType ? 'Processes' : 'Temperature',
+        val5: 'Harvest period',
+        val5_1: 'to',
+        val6: 'Environment',
+        val7: 'Families involved',
+        val8: 'Certificate',
+        val9: 'Volume',
+    }
+    const keyEs = {
+        val1: isCoffeeType ? 'Perfil' : 'Fermentación',
+        val2: 'Altitud',
+        val2_1: 'msnm',
+        val3: 'Variedades',
+        val4: isCoffeeType ? 'Procesos' : 'Temperatura',
+        val5: 'Periodo de cosecha',
+        val5_1: 'a',
+        val6: 'Ambiente',
+        val7: 'Familias',
+        val8: 'Certificados',
+        val9: 'Volumen',
+    }
+
+    const keyVal = isEnglish ? keyEn : keyEs 
+
     return(
         <WrapperBeanChart>
             <Column className="title">
                 <TitleNormal>
                     Growing Conditions
+                    {isEnglish ? 'Growing Conditions' : 'Propiedades del cultivo' }
                 </TitleNormal>
                 <TitleBold>
                     {title}
@@ -62,19 +92,19 @@ const BeanChart = ({ title, acf, beanType, state }) => {
                     <table>
                         <tbody>
                             <tr>
-                                <td className="main">{isCoffeeType ? 'Profile' : 'Fermentation'}</td>
+                                <td className="main">{keyVal.val1}</td>
                                 <td>{TITLE_1}</td>
                             </tr>
                             <tr>
-                                <td className="main"> Altitude</td>
-                                <td>{TITLE_2_1} - {TITLE_2_2} masl</td>
+                                <td className="main"> {keyVal.val2}</td>
+                                <td>{TITLE_2_1} - {TITLE_2_2} {keyVal.val2_1}</td>
                             </tr>
                             <tr>
-                                <td className="main">Varieties</td>
+                                <td className="main">{keyVal.val3}</td>
                                 <td>{TITLE_3?.map((el, i) => i !== TITLE_3.length-1 ?  el+', ' : el)}</td>
                             </tr>
                             <tr>
-                                <td className="main">{isCoffeeType ? 'Processes' : 'Temperature'}</td>
+                                <td className="main">{keyVal.val4}</td>
                                 <td>
                                     {isCoffeeType ? 
                                         TITLE_4?.map((el, i) => i !== TITLE_4.length-1 ?  el+', ' : el) : TITLE_4
@@ -82,8 +112,8 @@ const BeanChart = ({ title, acf, beanType, state }) => {
                                 </td>
                             </tr>
                             <tr>
-                                <td className="main">Harvest period</td>
-                                <td>{TITLE_5_1} to {TITLE_5_2}</td>
+                                <td className="main">{keyVal.val5}</td>
+                                <td>{TITLE_5_1} {keyVal.val5_1} {TITLE_5_2}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -92,24 +122,24 @@ const BeanChart = ({ title, acf, beanType, state }) => {
                     <table>
                         <tbody>
                             <tr>
-                                <td className="main">Environment</td>
+                                <td className="main">{keyVal.val6}</td>
                                 <td>{TITLE_6}</td>
                             </tr>
                             <tr>
-                                <td className="main">Families <br/> involved</td>
+                                <td className="main">{keyVal.val7}</td>
                                 <td>{TITLE_7}</td>
                             </tr>
                             <tr>
-                                <td className="main">Certificate</td>
+                                <td className="main">{keyVal.val8}</td>
                                 <td>{TITLE_8}</td>
                             </tr>
                             <tr>
-                                <td className="main">Volume</td>
+                                <td className="main">{keyVal.val9}</td>
                                 <td>{TITLE_9} tons</td>
                             </tr>
                         </tbody>
                     </table>
-                    <ButtonSecondary as={Link} link={isEnglish ? '/contact/' : '/es/contacto/'}>Get it!</ButtonSecondary>
+                    <ButtonSecondary as={Link} link={isEnglish ? '/contact/' : '/es/contacto/'}>{isEnglish ? 'Get it!' : '¡Lo quiero!'}</ButtonSecondary>
                 </Column>
             </Row>
         </WrapperBeanChart>

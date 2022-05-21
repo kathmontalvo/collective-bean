@@ -11,11 +11,11 @@ import CacaoComunalCircle from "../../../images/valle-icon-circle.svg"
 const BeanPlace = ( { state, actions } ) => {
     const data = state.source.get(state.router.link);
     const post = state.source[data.type][data.id];
+    const isEnglish = !state.router.link.includes('/es/') ? true : false;
+
 	const isCoffeeBeans = post.categories.find(el => el == 27 || el == 24);
     // 27/24 -> cafes - 31/29 -> cacaos
 
-    console.log('post---->', post)
-    console.log('cafe---->', isCoffeeBeans)
     // 19-> microlot 18 -> comunal
     const title = post.title.rendered
     const acf = post.acf;
@@ -36,33 +36,36 @@ const BeanPlace = ( { state, actions } ) => {
 
     const description = beanType === 'coffee-bean' ? acf.COFFE_DESCRIPTION : acf.CACAO_DESCRIPTION;
     const bgImgSrc = beanType === 'coffee-bean' ? acf.COFFE_BG_IMG : acf.CACAO_BG_IMG;
-    // console.log(microlotImg, comunalImg, typeof loteType,  Object.values(loteType));
+
     const comunalCoffeeTexts = [
-        'Traceable region/area',
-        'High quality consistency',
-        'Larger volumes',
-        'Certifications upon request'
+        isEnglish ? 'Traceable region/area' : 'Región/área trazable',
+        isEnglish ? 'High quality consistency' : 'Consistencia de alta calidad',
+        isEnglish ? 'Larger volumes' : 'Volúmenes más grandes',
+        isEnglish ? 'Certifications upon request' : 'Certificaciones a pedido'
     ]
 
     const microlotCoffeTexts = [
-        'Traceable farm/plot',
-        'Expertise techniques',
-        'Unique profiles and origins',
+        isEnglish ? 'Traceable farm/plot' : 'Chacra/parcela trazable',
+        isEnglish ? 'Expertise techniques' : 'Procesos experimentales',
+        isEnglish ? 'Unique profiles and origins' : 'Perfiles y orígenes únicos',
         ''
     ]
 
     const comunalCacaoTexts = [
-        'Traceable region/area',
-        'High quality consistency',
-        'Larger volumes',
-        'Native & commercial blends'
+        isEnglish ? 'Traceable region/area' : 'Región/área trazable',
+        isEnglish ? 'High quality consistency' : 'Consistencia de alta calidad',
+        isEnglish ? 'Larger volumes' : 'Volúmenes más grandes',
+        isEnglish ? 'Native & commercial blends' : 'Mezclas nativas y comerciales'
     ]
 
     const microlotCacaoTexts = [
-        'Traceable farm/plot',
-        'Fine flavor cacaos',
-        'Very limited/ exclusive availability'
+        isEnglish ? 'Traceable farm/plot' : 'Chacra/parcela trazable',
+        isEnglish ? 'Fine flavor cacaos' : 'Cacaos finos de aroma',
+        isEnglish ? 'Very limited/ exclusive availability' : 'Disponibilidad muy limitada/exclusiva'
     ]
+
+    const titleMicrolot = isEnglish ? 'Microlots' : 'Microlotes'
+    const titleComunal = isEnglish ? 'Comunales' : 'Comunales'
 
     return (
         <>
@@ -79,7 +82,7 @@ const BeanPlace = ( { state, actions } ) => {
                             Object.values(loteType).sort().map(lote => {
                                 return(
                                     <>
-                                        <BeanCard state={state} title={title} img={lote === 19 ? microlotImg : comunalImg} loteType={lote === 19 ? 'Microlots' : 'Comunales'} beanType={beanType} />
+                                        <BeanCard state={state} title={title} img={lote === 19 ? microlotImg : comunalImg} loteType={lote === 19 ? 'microlots' : 'comunales'} loteTitle={lote===19 ? titleMicrolot : titleComunal} beanType={beanType} />
                                     </>
                                 )
                             })
@@ -89,7 +92,7 @@ const BeanPlace = ( { state, actions } ) => {
             </WrapperBeanPlace>
             <BeanChart state={state} title={title} acf={acf} beanType={beanType}/>
             <WrapperRanges>
-                <TitleBold> Our Ranges </TitleBold>
+                <TitleBold> {isEnglish ? 'Our Ranges' : 'Nuestros rangos'} </TitleBold>
                 <Row className="content">
                     <CardHover className={`comunales ${beanType}`}>
                         <Row>
@@ -104,7 +107,7 @@ const BeanPlace = ( { state, actions } ) => {
                         </Row>
                         <div className={`titleType ${beanType}`}>
                             <Subtitle>
-                                Comunales
+                                {titleComunal}
                             </Subtitle>
                         </div>
                     </CardHover>
@@ -121,7 +124,7 @@ const BeanPlace = ( { state, actions } ) => {
                         </Row>
                         <div className={`titleType ${beanType}`}>
                             <Subtitle>
-                                Microlots
+                                {titleMicrolot}
                             </Subtitle>
                         </div>
                     </CardHover>

@@ -1,28 +1,31 @@
 import { styled, connect } from "frontity";
 
-const description404 = (
-  <>
-    That page can’t be found{" "}
-    <span role="img" aria-label="confused face">
-      😕
-    </span>
-  </>
-);
-
-const description = (
-  <>
-    Don&apos;t panic! Seems like you encountered an error. If this persists,
-    <a href="https://community.frontity.org"> let us know </a> or try refreshing
-    your browser.
-  </>
-);
-
 // The 404 page component
 const Page404 = ({ state }) => {
   const data = state.source.get(state.router.link);
+  const isEnglish = !state.router.link.includes('/es/') ? true : false;
 
-  const title = "Oops! Something went wrong";
-  const title404 = "Oops! 404";
+
+  const title = isEnglish ? "Oops! Something went wrong" : '¡Ups! Ocurrió un error';
+  const title404 = isEnglish ? "Oops! Something went wrong" : '¡Ups! 404';
+
+  const description404Title = isEnglish ? 'That page can’t be found' : 'No hemos podido encontrar la página que buscas.';
+  const descriptionTitle = isEnglish ? ' Don&apos;t panic! Seems like you encountered an error. If this persists,let us know or try refreshing your browser.' : 'Parece que hubo un error al intentar cargar la página. Si persiste, comunicate a contact@collectivebean.com'
+
+  const description404 = (
+    <>
+      {description404Title}{" "}
+      <span role="img" aria-label="confused face">
+        😕
+      </span>
+    </>
+  );
+  
+  const description = (
+    <>
+      {descriptionTitle}
+    </>
+  );
 
   return (
     <Container>
@@ -39,6 +42,7 @@ const Container = styled.div`
   margin: 48px auto;
   padding: 24px;
   text-align: center;
+  min-height: 35vh;
 `;
 
 const Title = styled.h1`

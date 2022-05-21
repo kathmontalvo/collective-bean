@@ -5,7 +5,6 @@ import ResourceCard from "./resource-card";
 const ModelPage = ({ state }) => {
     const data = state.source.get(state.router.link);
     const post = state.source[data.type][data.id];
-    console.log('post---->', post)
 
     const acf = post.acf;
 
@@ -27,8 +26,6 @@ const ModelPage = ({ state }) => {
         {title: RESOURCE_5_TITLE, description: RESOURCE_5_DESCRIPTION.split('\r\n\r\n'), url: RESOURCE_5_URL, img: RESOURCE_5_IMG},
         {title: RESOURCE_6_TITLE, description: RESOURCE_6_DESCRIPTION.split('\r\n\r\n'), url: RESOURCE_6_URL, img: RESOURCE_6_IMG},
     ]
-
-    // console.log(messages)
 
     return(
         <>

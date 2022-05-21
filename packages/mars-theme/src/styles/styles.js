@@ -105,7 +105,7 @@ export const Column = styled.div`
 
 export const BackgroundImage = styled.img`
     width: 100%;
-    height: fit-content;
+    height: -webkit-fill-available;
     z-index: -2;
     object-fit: cover;
     position: absolute;
@@ -147,7 +147,7 @@ export const WrapperWelcome = styled.section`
 
     & h1 {
         font-family: 'Abel', sans-serif;
-        font-size: 48px;    
+        font-size: 42px;    
         line-height: 64px;
         margin-bottom: 0;
         margin-top: 0;
@@ -168,12 +168,21 @@ export const WrapperWelcome = styled.section`
     ${MainButton} {
         animation: 1s ${fadeAnimation} 0.2s backwards;
     }
+
+    @media screen and (min-width: 361px) {
+        & h1 {
+            font-size: 45px;    
+            max-width: 90%;
+        }
+    }
+
     @media screen and (min-width: 768px) {
         padding: 64px 80px 200px;
         & h1 {
             margin-top: 0.85em;
-            font-size: 64px;
+            font-size: 60px;
             line-height: 90px;
+            max-width: 100%;
         }
     }
     @media screen and (min-width: 1200px) {
@@ -181,7 +190,7 @@ export const WrapperWelcome = styled.section`
         padding: 70px 120px;
         & h1 {
             margin-top: 0.85em;
-            font-size: 92px;
+            font-size: 90px;
             line-height: 120px;
         }
         & h2 {
@@ -635,7 +644,7 @@ export const CardVisible = styled.section`
 `
 export const CardHover = styled(Row)`
     display: none;
-    height: 301px;
+    height: 297px;
     align-items: center;
     justify-content: center;
     padding: 0 18px;
@@ -674,8 +683,21 @@ export const CardHover = styled(Row)`
         padding: 16px 32px;
         margin: 2px;
         text-align: center;
-        width: 20%
+        width: 20%;
+        font-size: 16px:
     }
+
+    @media screen and (min-width: 768px) {
+        padding: 0 32px;
+        ${ButtonSecondary} {
+            padding: 16px 32px;
+            margin: 2px;
+            text-align: center;
+            width: 30%;
+            font-size: 20px;
+        }
+    }
+
 `
 
 export const BeanCardWrapper = styled(Wrapper)`
@@ -904,7 +926,7 @@ export const WrapperRanges = styled(Wrapper)`
 // Model
 
 export const WrapperBanner = styled.section`
-    padding: 64px 36px 48px;
+    padding: 130px 36px 130px;
     text-align: center;
     animation: 0.5s ${fadeAnimation} 0.3s backwards;
 
@@ -949,7 +971,7 @@ export const WrapperBanner = styled.section`
 
 export const WrapperMessages = styled(Wrapper)`
     width: auto;
-    padding: 64px 0;
+    padding: 0 0 64px;
     ${TitleBold} {
         color: #B63EB6;
     }

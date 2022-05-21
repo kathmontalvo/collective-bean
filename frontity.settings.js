@@ -2,9 +2,9 @@ const settings = {
   "name": "collective-bean",
   "state": {
     "frontity": {
-      "url": "https://test.collectivebean.com/",
+      "url": "https://collectivebean.com/",
       "title": "Collective Bean",
-      "description": "A site of collectives"
+      "description": "Coffee and Cacao exports"
     }
   },
   "packages": [

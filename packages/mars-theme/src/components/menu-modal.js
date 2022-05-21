@@ -96,12 +96,15 @@ const MenuOverlay = styled.div`
 `;
 
 const MenuContent = styled.div`
+  font-family: 'Abel', sans-serif;
   z-index: 3;
   position: relative;
   position: absolute;
   width: 100vw;
   left: 0;
   padding: 48px 0;
+  max-height: 80vh;
+  overflow: scroll;
 `;
 
 const MenuLinkWithChildren = styled.div`
