@@ -56,9 +56,10 @@ const BeanChart = ({ title, acf, beanType, state }) => {
         val5: 'Harvest period',
         val5_1: 'to',
         val6: 'Environment',
-        val7: 'Families involved',
+        val7: 'Families <br/> involved',
         val8: 'Certificate',
         val9: 'Volume',
+        val9_1: 'tons',
     }
     const keyEs = {
         val1: isCoffeeType ? 'Perfil' : 'Fermentación',
@@ -68,10 +69,11 @@ const BeanChart = ({ title, acf, beanType, state }) => {
         val4: isCoffeeType ? 'Procesos' : 'Temperatura',
         val5: 'Periodo de cosecha',
         val5_1: 'a',
-        val6: 'Ambiente',
+        val6: 'Ecosistema',
         val7: 'Familias',
         val8: 'Certificados',
         val9: 'Volumen',
+        val9_1: 'toneladas',
     }
 
     const keyVal = isEnglish ? keyEn : keyEs 
@@ -80,7 +82,6 @@ const BeanChart = ({ title, acf, beanType, state }) => {
         <WrapperBeanChart>
             <Column className="title">
                 <TitleNormal>
-                    Growing Conditions
                     {isEnglish ? 'Growing Conditions' : 'Propiedades del cultivo' }
                 </TitleNormal>
                 <TitleBold>
@@ -135,7 +136,7 @@ const BeanChart = ({ title, acf, beanType, state }) => {
                             </tr>
                             <tr>
                                 <td className="main">{keyVal.val9}</td>
-                                <td>{TITLE_9} tons</td>
+                                <td>{TITLE_9} {keyVal.val9_1}</td>
                             </tr>
                         </tbody>
                     </table>

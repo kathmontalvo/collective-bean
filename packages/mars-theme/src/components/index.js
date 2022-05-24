@@ -26,26 +26,11 @@ import Contact from "./pages/contact";
  *
  * @returns The top-level react component representing the theme.
  */
-const Theme = ({ state }) => {
+const Theme = ({ state, actions }) => {
   // Get information about the current URL.
   const data = state.source.get(state.router.link);
 
   useEffect(() => {
-
-
-    // setTimeout(() => {
-    //   if(data.link === '/es/recursos/') {
-    //     const post = state.source[data.type][data.id];
-    //     post.acf.RESOURCE_1_IMG.startsWith('https://collective') && window.location.reload(false);
-    //   }
-    // }, 100);
-
-    // setTimeout(() => {
-    //   if(data.link === '/es/nuestro-modelo/') {
-    //     const post = state.source[data.type][data.id];
-    //     post.acf.MODEL_BG_IMG.startsWith('https://collective') && window.location.reload(false);
-    //   }
-    // }, 100);
 
     const timer = setTimeout(() => {
       if(!data.isReady) {

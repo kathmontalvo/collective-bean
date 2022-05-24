@@ -171,8 +171,7 @@ export const WrapperWelcome = styled.section`
 
     @media screen and (min-width: 361px) {
         & h1 {
-            font-size: 45px;    
-            max-width: 90%;
+            max-width: 85%;
         }
     }
 
@@ -188,6 +187,7 @@ export const WrapperWelcome = styled.section`
     @media screen and (min-width: 1200px) {
         max-width: 75%; 
         padding: 70px 120px;
+        padding-bottom: 150px;
         & h1 {
             margin-top: 0.85em;
             font-size: 90px;
@@ -220,8 +220,9 @@ export const WrapperModel = styled.section`
     }
     @media screen and (min-width: 1200px) {
         padding: 120px;
-        padding-top: 140px;
+        padding-top: 100px;
         padding-bottom: 200px;
+        background-color: #FFFFFF;
     }
     @media screen and (min-width: 1600px) {
         padding: 120px 300px;
@@ -644,10 +645,10 @@ export const CardVisible = styled.section`
 `
 export const CardHover = styled(Row)`
     display: none;
-    height: 297px;
+    height: 248px;
     align-items: center;
-    justify-content: center;
-    padding: 0 18px;
+    justify-content: space-evenly;
+    padding: 0 16px;
     color: #FFFFFF;
     animation: 0.5s ${fadeAnimation} -0.05s backwards;
 
@@ -665,13 +666,8 @@ export const CardHover = styled(Row)`
         background-color: #52313D;
     }
 
-    img, ${Subtitle}, ${ButtonSecondary} {
-        width: 50%;
-    }
-
     img {
-        width: 25%;
-        margin: auto;
+        max-width: 30%;
     }
 
     ${Subtitle} {
@@ -680,20 +676,17 @@ export const CardHover = styled(Row)`
     }
 
     ${ButtonSecondary} {
-        padding: 16px 32px;
-        margin: 2px;
+        padding: 12px 24px;
         text-align: center;
-        width: 20%;
         font-size: 16px:
     }
 
     @media screen and (min-width: 768px) {
         padding: 0 32px;
+        height: 297px;
         ${ButtonSecondary} {
             padding: 16px 32px;
-            margin: 2px;
             text-align: center;
-            width: 30%;
             font-size: 20px;
         }
     }
@@ -782,8 +775,8 @@ export const WrapperBeanChart = styled(Wrapper)`
                         color: #FFFFFF;
                         &.main {
                             color: #D1C065;
-                            padding: 24px 0;
-                            width: 120px
+                            padding: 24px 12px;
+                            width: 110px;
                         }
                     }
                 }
@@ -860,6 +853,8 @@ export const WrapperRanges = styled(Wrapper)`
                 padding: 32px 24px;
                 width: 90%;
                 height: 150px;
+                justify-content: center;
+                align-items: center;
                 ${Column} {
                     justify-content: center;
                     width: 65%;
@@ -982,41 +977,43 @@ export const WrapperMessages = styled(Wrapper)`
     }
     ${Row} {
         padding: 64px 36px;
-        background: #FFFFFF;
         flex-direction: column;
+        background: linear-gradient(
+            to bottom,
+            #EBEBEB 80%,
+            #FFFFFF 20%
+            );
         ${Column} {
             width: 100%;
             img {
                 width: 100%;
-                height: 350px;
+                height: auto;
                 object-fit: cover;
                 object-position: 50% 20%;
             }
+        }
+        &:nth-of-type(2n) {
+            background: linear-gradient(
+            to bottom,
+            #FFFFFF 80%,
+            #EBEBEB 20%
+            );
+        }
+        &:last-child {
+            background: #FFFFFF;
         }
     }
     @media screen and (min-width: 768px) {
         ${Row} {
             padding: 64px 120px;
             flex-direction: row;
-            background: -webkit-gradient(
-                linear,
-                left top,
-                left bottom,
-                color-stop(80%, #EBEBEB),
-                color-stop(20%, #FFFFFF)
-            );
-            background: -o-linear-gradient(top, #EBEBEB 80%, #FFFFFF 20%);
-            background: linear-gradient(
-            to bottom,
-            #EBEBEB 80%,
-            #FFFFFF 20%
-            );
     
             ${Column} {
                 width: 50%;
     
                 img {
                     border-radius: 0 0 64px 0;
+                    height: 350px;
                 }
     
                 &.text {
@@ -1028,19 +1025,6 @@ export const WrapperMessages = styled(Wrapper)`
             }
     
             &:nth-of-type(2n) {
-                background: -webkit-gradient(
-                    linear,
-                    left top,
-                    left bottom,
-                    color-stop(80%, #FFFFFF),
-                    color-stop(20%, #EBEBEB)
-                );
-                background: -o-linear-gradient(top, #FFFFFF 80%, #EBEBEB 20%);
-                background: linear-gradient(
-                to bottom,
-                #FFFFFF 80%,
-                #EBEBEB 20%
-                );
                 ${Column} {
                     &.text {
                         order: 1;
@@ -1053,9 +1037,6 @@ export const WrapperMessages = styled(Wrapper)`
             }
             &:first-of-type {
                 padding-top: 100px;
-            }
-            &:last-child {
-                background: #FFFFFF;
             }
         }
     }
