@@ -1,6 +1,7 @@
 import { connect, styled } from "frontity";
 import { TextBody } from "../../../styles/styles"
 import Link from "../../link"
+import downloadIcon from "../../../images/download.svg"
 
 const ResourceCard = ({resource}) => {
     return(
@@ -11,6 +12,7 @@ const ResourceCard = ({resource}) => {
             target="_blank"
             style={{backgroundImage: `url(${resource.img})`}}
         >
+            <img src={downloadIcon} alt="download icon" />
             <h4>{resource.title}</h4>
             <TextBody>
                 {resource.description}            
@@ -31,6 +33,11 @@ const CardProduct = styled.div`
     align-items: center;
     justify-content: center;
 
+    img {
+        width: 36px;
+        height: 36px;
+    }
+
     h4 {
         color: #FFFFFF;
         font-family: 'Abel', sans-serif;
@@ -48,6 +55,10 @@ const CardProduct = styled.div`
     @media screen and (min-width: 768px) {
         width: 40%;
         padding: 16px 24px;
+        img {
+            width: 48px;
+            height: 48px;
+        }
         h4 {
             font-size: 36px;
     
