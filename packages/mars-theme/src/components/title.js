@@ -6,6 +6,8 @@ const Title = ({ state }) => {
   // Set the default title.
   let title = state.frontity.title;
 
+  const isDesacataEn = state.router.link === '/desacata/'
+
   if (data.isTaxonomy) {
     // Add titles to taxonomies, like "Category: Nature - Blog Name" or "Tag: Japan - Blog Name".
     // 1. Get the taxonomy entity from the state to get its taxonomy term and name.
@@ -31,7 +33,7 @@ const Title = ({ state }) => {
     title = `${cleanTitle} - ${state.frontity.title}`;
   } else if (data.is404) {
     // Add titles to 404's.
-    title = `404 Not Found - ${state.frontity.title}`;
+    title = `${!isDesacataEn ? '404 Not Found' : 'Desacata'} - ${state.frontity.title}`;
   }
 
   return (

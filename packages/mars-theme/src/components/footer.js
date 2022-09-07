@@ -10,7 +10,6 @@ import arrowDown from "../images/icon-arrow-down.svg"
 import arrowUp from "../images/icon-arrow-up.svg"
 
 const Footer = ({ state }) => {
-    console.log(state);
     const isEnglish = !state.router.link.includes('/es/') ? true : false;
     const menu = isEnglish ? state.theme.menuUrl : state.theme.menuUrlEs;
     const items = state.source.get(`/menu/${menu}/`).items;

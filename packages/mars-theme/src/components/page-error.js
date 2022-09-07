@@ -1,9 +1,13 @@
 import { styled, connect } from "frontity";
+import Loading from "./loading";
 
 // The 404 page component
 const Page404 = ({ state }) => {
   const data = state.source.get(state.router.link);
   const isEnglish = !state.router.link.includes('/es/') ? true : false;
+
+  const isDesacataEn = state.router.link === '/desacata/'
+  console.log(isDesacataEn)
 
 
   const title = isEnglish ? "Oops! Something went wrong" : '¡Ups! Ocurrió un error';
@@ -29,8 +33,17 @@ const Page404 = ({ state }) => {
 
   return (
     <Container>
-      <Title>{data.is404 ? title404 : title}</Title>
-      <Description>{data.is404 ? description404 : description}</Description>
+
+      {
+        !isDesacataEn 
+        ?
+          <>
+            <Title>{data.is404 ? title404 : title}</Title>
+            <Description>{data.is404 ? description404 : description}</Description>
+          </>
+        : 
+        <Loading />
+      }
     </Container>
   );
 };

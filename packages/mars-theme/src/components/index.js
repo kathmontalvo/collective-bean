@@ -33,9 +33,24 @@ const Theme = ({ state, actions }) => {
   useEffect(() => {
 
     const timer = setTimeout(() => {
+      if(data.link === '/desacata/'){
+        window.location.href = "/es/desacata"
+      }
+
+    }, 100);
+
+    return () => {
+      clearTimeout(timer)
+    };
+  }, [data]);
+
+  useEffect(() => {
+
+    const timer = setTimeout(() => {
       if(!data.isReady) {
         window.location.reload(false);
       }
+
     }, 1000);
 
     return () => {
