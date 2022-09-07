@@ -51,10 +51,12 @@ const Theme = ({ state, actions }) => {
       <Title />
       <Head>
         <meta name="description" content={state.frontity.description} />
+        <meta name="robots" content="index,follow" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet"/>
         <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet" />
+        <meta name="google" content="notranslate"></meta>
         <html lang="en" />
 
       </Head>

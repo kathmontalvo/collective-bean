@@ -7,6 +7,7 @@ import CBlogo from "../images/cb_logo_white.png"
 import fb from "../images/fb.svg"
 import ig from "../images/ig.svg"
 import arrowDown from "../images/icon-arrow-down.svg"
+import arrowUp from "../images/icon-arrow-up.svg"
 
 const Footer = ({ state }) => {
     console.log(state);
@@ -18,12 +19,17 @@ const Footer = ({ state }) => {
 
     const clickToggle = (param, id) => {
         const el = document.getElementById(`childMenuFooter-${id}`);
+        const imgArrow = document.getElementById(`imgArrowFooter-${id}`);
+
         setIsToggle(!param)
 
         if (!isToggle) {
-            el.style.display = "block"
+            el.style.display = "block";
+            imgArrow.src = arrowUp;
+
         } else {
-            el.style.display = "none"
+            el.style.display = "none";
+            imgArrow.src = arrowDown;
         }
     }
 
@@ -48,10 +54,10 @@ const Footer = ({ state }) => {
                         const childItems = item.child_items;
                         return (
                             <>
-                                <li key={item.ID}>
+                                <li key={item.ID} className="menu-children">
                                     <div onClick={() => clickToggle(isToggle, item.ID)}>
                                         {item.title}
-                                        <img src={arrowDown} width={12} style={{ marginLeft: '8px' }} />
+                                        <img src={arrowDown} id={`imgArrowFooter-${item.ID}`} width={12} style={{ marginLeft: '8px' }} />
                                     </div>
                                 </li>
                                 <div key={2} id={`childMenuFooter-${item.ID}`} style={{ display: 'none' }}>
@@ -60,7 +66,7 @@ const Footer = ({ state }) => {
                                         const slug = childItem.object ===  'category' ? `category/${childItem.slug}` : childItem.slug
 
                                         return (
-                                            <li key={i}>
+                                            <li key={i} className="menu-child">
                                                 <Link link={ childItem.slug ? `/${isEnglish ? '' : 'es/'}${slug}` : childItem.url }>
                                                     {childItem.title}
                                                 </Link>

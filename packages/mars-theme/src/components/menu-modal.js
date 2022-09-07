@@ -1,7 +1,9 @@
 import { styled, connect, useConnect } from "frontity";
 import { useState } from "react"
 import Link from "./link";
-import arrowDown from "../images/icon-arrow-down.svg"
+import arrowDown from "../images/icon-arrow-down.svg";
+import arrowUp from "../images/icon-arrow-up.svg";
+
 /**
  * The modal containing the mobile menu items.
  *
@@ -20,11 +22,15 @@ const MenuModal = ({ ...props }) => {
 
   const clickToggle = (param, id) => {
     const el = document.getElementById(`childMenuModal-${id}`);
+    const imgArrow = document.getElementById(`imgArrow-${id}`);
+
     setIsToggle(!param)
     if (!isToggle) {
-      el.style.display = "block"
+      el.style.display = "block";
+      imgArrow.src = arrowUp;
     } else {
-      el.style.display = "none"
+      el.style.display = "none";
+      imgArrow.src = arrowDown;
     }
   }
 
@@ -53,7 +59,7 @@ const MenuModal = ({ ...props }) => {
               <MenuLinkWithChildren key={`navItemWithChild-${item.ID}`} id={`navItemWithChild-${item.ID}`}>
                 <MenuLink onClick={() => clickToggle(isToggle, item.ID)}>
                   {item.title}
-                  <img src={arrowDown} width={14} style={{ marginLeft: '8px'}} />
+                  <img src={arrowDown} id={`imgArrow-${item.ID}`} width={14} style={{ marginLeft: '8px'}} />
                 </MenuLink>
                 <ChildMenu id={`childMenuModal-${item.ID}`}>
                   {childItems.map((childItem, i) => {
@@ -119,6 +125,8 @@ const MenuLink = styled.div`
   font-size: 20px;
   text-align: center;
   padding: 1.2rem 0;
+  border-bottom: 1px solid #ffffff17;
+  border-top: 1px solid #ffffff17;
 
   &:hover,
   &:focus {
@@ -134,7 +142,9 @@ const MenuLink = styled.div`
 const ChildMenu = styled.div`
   display: none;
   ${MenuLink} {
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: rgb(0 0 0 / 24%);
+    border-bottom: none;
+    border-top: none;
   }
 `
 

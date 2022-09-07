@@ -480,6 +480,12 @@ export const FooterSection = styled.footer`
             text-transform: uppercase;
             margin-bottom: 16px;
             text-align: center;
+            &.menu-children {
+                cursor: default;
+            }
+            &.menu-child {
+                background-color: rgb(0 0 0 / 24%);
+            }
         }
     }
     ${Column} {

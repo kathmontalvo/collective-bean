@@ -56,7 +56,7 @@ const BeanChart = ({ title, acf, beanType, state }) => {
         val5: 'Harvest period',
         val5_1: 'to',
         val6: 'Environment',
-        val7: 'Families <br/> involved',
+        val7: 'Families involved',
         val8: 'Certificate',
         val9: 'Volume',
         val9_1: 'tons',
