@@ -14,6 +14,8 @@ const Footer = ({ state }) => {
     const menu = isEnglish ? state.theme.menuUrl : state.theme.menuUrlEs;
     const items = state.source.get(`/menu/${menu}/`).items;
 
+    console.log(state.source.get(`/menu/${menu}/`));
+    
     const [isToggle, setIsToggle] = useState(false)
 
     const clickToggle = (param, id) => {
@@ -40,7 +42,7 @@ const Footer = ({ state }) => {
                 </Link>
             </Column>
             <Column as={"ul"} key={2}>
-                {items.map((item, i) => {
+                {items?.map((item, i) => {
                     if (!item.child_items) {
                         return (
                             <li key={i}>

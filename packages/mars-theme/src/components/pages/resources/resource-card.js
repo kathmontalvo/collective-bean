@@ -69,7 +69,7 @@ const CardProduct = styled.div`
     }
     
     @media screen and (min-width: 1200px) {
-        width: 25%;
+        width: 30%;
         padding: 36px 24px;
     }
 `

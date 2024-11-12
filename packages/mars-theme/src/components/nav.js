@@ -37,7 +37,7 @@ const Nav = ({ state }) => {
 
   return (
     <NavContainer>
-      {items.map((item) => {
+      {items?.map((item) => {
         // Check if the link matched the current page url
         const data = state.source.get(state.router.link);
         const isCurrentPage = data.route === item.url;

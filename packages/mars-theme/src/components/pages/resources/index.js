@@ -62,7 +62,7 @@ const WrapperCards = styled.div`
     flex-direction: row;
     padding: 64px 36px;
     background-color: #EBEBEB;
-    justify-content: space-between;
+    justify-content: space-around;
     @media screen and (min-width: 768px) {
         padding: 48px 80px;
     }

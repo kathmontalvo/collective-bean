@@ -74,6 +74,7 @@ const Desacata = ({ state }) => {
                 </nav>
                 <section className="main-banner">
                     <div className="text">
+                        <p style={{display: "none"}}> Desacata: compra café y cacao peruano. Chocolate y café de Collective Bean.</p>
                         <h2>{TITLE}</h2>
                         <p>{SUBTITLE}</p>
                         <Link link={whatsappRedirect} target="_blank" rel="noopener noreferrer">unete</Link>
